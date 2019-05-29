@@ -1,0 +1,13 @@
+div.principal-content{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25rem;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.card{
+	border-radius: 1.25rem;
+}

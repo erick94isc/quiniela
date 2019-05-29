@@ -8,13 +8,15 @@ import {RouterModule,Routes} from '@angular/router';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { NuevoJugadorComponent } from './nuevo-jugador/nuevo-jugador.component';
 import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'/equipos',pathMatch:'full'},
+  {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'equipos', component:EquiposComponent},
   {path:'jugadores',component:JugadoresComponent},
-  {path:'nuevoEquipo',component:NuevoEquipoComponent}
+  {path:'nuevoEquipo',component:NuevoEquipoComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ const routes: Routes = [
     NuevoEquipoComponent,
     JugadoresComponent,
     NuevoJugadorComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
