@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { EquiposComponent } from './equipos/equipos.component';
@@ -9,6 +10,7 @@ import { JugadoresComponent } from './jugadores/jugadores.component';
 import { NuevoJugadorComponent } from './nuevo-jugador/nuevo-jugador.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import { EquipoComponent } from './equipos/equipo/equipo.component';
 
 
 const routes: Routes = [
@@ -27,11 +29,13 @@ const routes: Routes = [
     JugadoresComponent,
     NuevoJugadorComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    EquipoComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
