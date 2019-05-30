@@ -1,5 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
 
+
 @Component({
   selector: 'app-equipo',
   templateUrl: './equipo.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 })
 export class EquipoComponent implements OnInit {
 
-@Input() equipos:string;
+@Input() public equipo;
   constructor() { }
 
   ngOnInit() {

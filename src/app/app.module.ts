@@ -11,6 +11,7 @@ import { NuevoJugadorComponent } from './nuevo-jugador/nuevo-jugador.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { EquipoComponent } from './equipos/equipo/equipo.component';
+import { JugadorComponent } from './jugadores/jugador/jugador.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
     NuevoJugadorComponent,
     HeaderComponent,
     LoginComponent,
-    EquipoComponent
+    EquipoComponent,
+    JugadorComponent
   ],
   imports: [
     BrowserModule,
