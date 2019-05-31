@@ -1,9 +1,23 @@
 
-	<div class="card" style="max-width: 25rem;">
-  <h5 class="card-header">{{jugador.nombre}} </h5>
+<!--	<div class="card" style="max-width: 25rem;">
+  	  <img class="card-img-top" src="..." alt="Card image cap">
 	  <div class="card-body">
-	    <h5 class="card-title">Special title treatment</h5>
+	    <h5 class="card-title">{{jugador.nombre}}</h5>
 	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	    <a [routerLink]="['/jugadores']" class="card-link">Jugadores</a>
 	  </div>
 	</div>
+--> 
+
+<div class="card">
+                <div class="card-body">
+                    <div class="user-image text-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+                    </div>
+                    <h6 class="f-w-600 m-t-25 m-b-10 text-center">{{jugador.nombre}}</h6>
+                   <hr>
+                    <div class="m-t-15 text-muted">
+                    	<p>Datos Personales:</p>
+                    </div>
+                </div>
+ </div>
+        

@@ -3,7 +3,7 @@ export class Jugador{
 	nombre:string;
 	edad:number;
 	posicion:string;
-	numero:string;
+	numero:number;
 	telefono:number;
 	goles:number;
 	tarjetas_amarillas:number;

@@ -1,0 +1,58 @@
+.user-image {
+    position: relative;
+    margin: 0 auto;
+    padding: 5px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    border: 1px solid #dddddd;
+}
+
+.user-image img {
+    z-index: 20;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+        width: 100px;
+    height: 100px;
+}
+ 
+.img-radius {
+    border-radius: 50%;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-25 {
+    margin-top: 25px;
+}
+
+.m-t-15 {
+    margin-top: 15px;
+}
+
+.text-muted {
+    color: #919aa3!important;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.center{
+  text-align: center!important;
+}
+
+         
