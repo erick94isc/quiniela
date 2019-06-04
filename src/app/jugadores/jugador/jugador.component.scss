@@ -2,8 +2,8 @@
     position: relative;
     margin: 0 auto;
     padding: 5px;
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background: white;
     padding: 4px;
@@ -15,8 +15,8 @@
     position: absolute;
     top: 5px;
     left: 5px;
-        width: 100px;
-    height: 100px;
+    width: 80;
+    height: 80px;
 }
  
 .img-radius {
@@ -55,4 +55,22 @@
   text-align: center!important;
 }
 
-         
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+    color: white;
+    text-align: center;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.p-25 {
+    padding: 25px;
+}
+
+.card-body{
+    #content-data {
+        padding: 0 px !important;
+    }
+}

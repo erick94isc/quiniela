@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class JugadoresComponent implements OnInit {
 
- jugadores:Jugador[]=[{id:0,nombre:'Martin',edad:27,posicion:'Delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}, {id:0,nombre:'Martin',edad:27,posicion:'delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}];
+ jugadores:Jugador[]=[{id:0,nombre:'Martin',apellido:'Gonzalez',fecha_nacimiento:27,posicion:'Delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}, {id:0,nombre:'Martin',apellido:'Gonzalez',fecha_nacimiento:27,posicion:'delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}];
  private idEquipo;
 
   constructor(private route:ActivatedRoute) { }

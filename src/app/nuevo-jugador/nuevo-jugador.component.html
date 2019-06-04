@@ -1,3 +1,62 @@
-<p>
-  nuevo-jugador works!
-</p>
+<h2 style="margin-top: 20px;">Nuevo Jugador</h2>
+<hr>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="jugador.nombre">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="apellido">Apellido:</label>
+       <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="jugador.apellido">
+    </div>
+  </div>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="telefono">Teléfono:</label>
+      <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="jugador.telefono">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="fechaNacimiento">Fecha Nacimiento:</label>
+       <input type="number" class="form-control" id="fechaNacimiento" name="fecha_nacimiento" [(ngModel)]="jugador.fecha_nacimiento">
+    </div>
+  </div>
+  <div class="form-row">
+	 <div class="form-group col-md-6">
+      <label for="posicion">Posición:</label>
+	    <select class="custom-select" id="posicion">
+	      <option value="1">One</option>
+	      <option value="2">Two</option>
+	      <option value="3">Three</option>
+	    </select>
+	  </div>
+	   <div class="form-group col-md-6">
+	   	<label for="numero">Número:</label>
+       <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="jugador.numero">
+	   </div>
+</div>
+ <div class="form-row" style="border: 1px solid rgba(0,0,0,.125);padding: 15px;">
+    <div class="form-group col-md-4">    
+      <label >Goles:</label>
+      <br>
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles - 1">-</button>
+      <input type="number" name="goles" disabled="false" class=" input-disable" [(ngModel)]="jugador.goles">
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles + 1">+</button>
+    </div>
+    <div class="form-group col-md-4">
+      <label >Tarjetas Amarillas:</label>
+       <br>
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas - 1">-</button>
+      <input type="number" name="tarjetas_amarillas" disabled="false" class=" input-disable" [(ngModel)]="jugador.tarjetas_amarillas">
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas + 1">+</button>
+    </div>
+     <div class="form-group col-md-4">
+      <label>Tarjetas Rojas:</label>
+       <br>
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas - 1">-</button>
+      <input type="number" name="tarjetas_rojas" disabled="false" class="input-disable" [(ngModel)]="jugador.tarjetas_rojas">
+      <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas + 1">+</button>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">Registrar</button>
+</form>

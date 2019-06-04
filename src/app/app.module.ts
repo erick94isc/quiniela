@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EquiposComponent } from './equipos/equipos.component';
@@ -12,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { EquipoComponent } from './equipos/equipo/equipo.component';
 import { JugadorComponent } from './jugadores/jugador/jugador.component';
+import { TorneoComponent } from './torneo/torneo.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,8 @@ const routes: Routes = [
   {path:'equipos', component:EquiposComponent},
   {path:'jugadores',component:JugadoresComponent},
   {path:'nuevoEquipo',component:NuevoEquipoComponent},
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'nuevoJugador',component:NuevoJugadorComponent}
 ];
 
 @NgModule({
@@ -27,17 +30,19 @@ const routes: Routes = [
     AppComponent,
     EquiposComponent,
     NuevoEquipoComponent,
-    JugadoresComponent,
+    JugadoresComponent, 
     NuevoJugadorComponent,
     HeaderComponent,
     LoginComponent,
     EquipoComponent,
-    JugadorComponent
+    JugadorComponent,
+    TorneoComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
 export class Jugador{
 	id:number;
 	nombre:string;
-	edad:number;
+	apellido:string;
+	fecha_nacimiento:number;
 	posicion:string;
 	numero:number;
 	telefono:number;

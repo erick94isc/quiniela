@@ -1,25 +1,32 @@
 
-<!--	<div class="card" style="max-width: 25rem;">
-  	  <img class="card-img-top" src="..." alt="Card image cap">
-	  <div class="card-body">
-	    <h5 class="card-title">{{jugador.nombre}}</h5>
-	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	  </div>
-	</div>
---> 
-
 <div class="card">
                 <div class="card-body">
                     <div class="user-image text-center">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
                     </div>
-                    <h6 class="f-w-600 m-t-10 m-b-10 text-center">{{jugador.nombre}}</h6>
-                    <p class="text-muted text-center"> {{jugador.edad}} años | {{jugador.telefono}}</p>
+                    <h6 class="f-w-600 m-t-10 m-b-10 text-center">{{jugador.nombre}} {{jugador.apellido}}</h6>
+                    <p class="text-muted text-center"> {{jugador.fecha_nacimiento}}| {{jugador.telefono}}</p>
                    <hr>
                     <div class="text-muted">
-                    	<p class="m-t-15">Ficha Técnica:</p>
-                    	<p>Edad: {{jugador.edad}}</p>
-                    	<p>Teléfono: {{jugador.telefono}}</p>
+                    	<p class="m-t-15" style="font-weight: bold;">Ficha Técnica</p>
+                    	<p>Número: {{jugador.edad}}</p>
+                    	<p>Posición: {{jugador.posicion}}</p>
+                    </div>
+                    <div class="bg-c-blue m-t-10 p-25" id="content-data">
+                        <div class="row">
+                            <div class="col-4">
+                                <i class="fa fa-comment"></i>
+                                <p>{{jugador.goles}}</p>
+                            </div>
+                            <div class="col-4">
+                                <i class="fa fa-user"></i>
+                                <p>{{jugador.tarjetas_amarillas}}</p>
+                            </div>
+                            <div class="col-4">
+                                <i class="fa fa-suitcase"></i>
+                                <p>{{jugador.tarjetas_rojas}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
  </div>
