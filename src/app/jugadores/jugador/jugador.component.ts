@@ -9,6 +9,7 @@ import { Component, OnInit,Input } from '@angular/core';
 export class JugadorComponent implements OnInit {
 
  @Input() public jugador;
+
   constructor() { }
 
   ngOnInit() {

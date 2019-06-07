@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Jugador} from '../Model/jugador';
 import {ActivatedRoute} from '@angular/router';
+import {JugadorService} from '../service/jugador.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class JugadoresComponent implements OnInit {
 
- jugadores:Jugador[]=[{id:0,nombre:'Martin',apellido:'Gonzalez',fecha_nacimiento:27,posicion:'Delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}, {id:0,nombre:'Martin',apellido:'Gonzalez',fecha_nacimiento:27,posicion:'delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1}];
+ jugadores:Jugador[];
  private idEquipo;
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private service:JugadorService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
   	this.idEquipo = this.route.snapshot.paramMap.get('id');
+  	this.jugadores = await this.service.getJugadores().toPromise();
   }
 
 }

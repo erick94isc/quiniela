@@ -1,0 +1,40 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Equipo} from '../Model/equipo';
+import * as url from '../urlEndPoint';
+import {Observable,of} from 'rxjs';
+import {map} from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EquipoService {
+
+  private uri:string = url.urlEndPoint + '/equipo'	
+  private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
+  constructor(private http:HttpClient) { }
+
+  getEquipos():Observable<Equipo[]>{
+  	return this.http.get(this.uri).pipe(
+  		map((respose)=> respose as Equipo[])
+  		);
+
+  }
+
+  getEquipo(id:number):Observable<Equipo>{
+	  return this.http.get<Equipo>(`${this.uri}/${id}`);
+  }
+
+  create(equipo:Equipo):Observable<Equipo>{
+  	return this.http.post<Equipo>(this.uri,equipo,{headers:this.httpHeaders})
+  }
+
+  update(equipo:Equipo):Observable<void>{
+  	return this.http.put<void>(`${this.uri}/${equipo.id}`,equipo,{headers:this.httpHeaders})
+  }
+
+  delte(id):Observable<void>{
+  	return this.http.delete<void>(`${this.uri}/${id}`);
+  }
+
+}

@@ -1,7 +1,8 @@
 export class Equipo {
 	id:number;
 	nombre:string;
-	//torneo:string;
+	torneo:string;
+	color:string;
 	//posicion:number;
 	//puntos:number;
 	//partidos_jugados:number;

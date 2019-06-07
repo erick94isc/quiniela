@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Jugador} from '../Model/jugador';
 import {Equipo} from '../Model/equipo';
+import {EquipoService} from '../service/equipo.service';
 
 
 @Component({
@@ -11,10 +12,12 @@ import {Equipo} from '../Model/equipo';
 export class EquiposComponent implements OnInit {
 
   jugadores:Jugador[];
-  equipos : Equipo[]= [ { "id": 0, "nombre": "Falsos" },{ "id": 1, "nombre": "Cuervos de nuevo toledo" },];
-  constructor() { }
+  equipos : Equipo[];
+  constructor(private service:EquipoService) { }
 
-  ngOnInit() {
+ async ngOnInit() {
+ 	this.equipos =  await this.service.getEquipos().toPromise();
+ 	console.log(this.equipos);
   }
 
 }

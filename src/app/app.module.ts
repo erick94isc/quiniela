@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { EquipoComponent } from './equipos/equipo/equipo.component';
 import { JugadorComponent } from './jugadores/jugador/jugador.component';
 import { TorneoComponent } from './torneo/torneo.component';
+import { DatePipe } from '@angular/common'
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

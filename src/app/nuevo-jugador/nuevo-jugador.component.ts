@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Jugador} from '../Model/jugador';
+import {Posicion} from '../Model/posicion';
+import {PosicionService} from '../service/posicion.service';
+import {JugadorService} from '../service/jugador.service';
+import Swal from 'sweetalert2'
+import {Router} from '@angular/router';
+import { DatePipe } from '@angular/common'
+
 
 @Component({
   selector: 'app-nuevo-jugador',
@@ -8,12 +15,30 @@ import {Jugador} from '../Model/jugador';
 })
 export class NuevoJugadorComponent implements OnInit {
 
-	jugador :Jugador={id:0,nombre:'Nicole',apellido:'Rosas',fecha_nacimiento:23,posicion:'Delantero',numero:2,telefono:999999,goles:10,tarjetas_amarillas:0,tarjetas_rojas:1};
-  constructor() {
+	jugador :Jugador= new Jugador();
+  posiciones:Posicion[];
+  date:string;
+  	constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe) {
+  		
   	
    }
 
-  ngOnInit() {
+ async ngOnInit() {
+     let that = this;
+     this.posiciones = await this.service.getPosicion().toPromise();
+  }
+
+  guardar(){
+    console.log(this.jugador);
+    this.jugadorService.create(this.jugador).subscribe(
+      response=>{
+        console.log(response);
+        this.router.navigate(['/jugadores']);
+        Swal.fire('','Jugador guardado','success');
+      },error=>{
+        Swal.fire('Error','No fue posible guardar el jugador','error');
+        console.log(error);
+      });
   }
 
 }

@@ -18,16 +18,15 @@
     </div>
     <div class="form-group col-md-6">
       <label for="fechaNacimiento">Fecha Nacimiento:</label>
-       <input type="number" class="form-control" id="fechaNacimiento" name="fecha_nacimiento" [(ngModel)]="jugador.fecha_nacimiento">
+      <input type="date" id="fechaNacimiento" class="form-group" class="date-picker" name="fecha_nacimiento" min="1950-12-01" [(ngModel)]="jugador.fecha_nacimiento">
     </div>
   </div>
   <div class="form-row">
 	 <div class="form-group col-md-6">
       <label for="posicion">Posición:</label>
-	    <select class="custom-select" id="posicion">
-	      <option value="1">One</option>
-	      <option value="2">Two</option>
-	      <option value="3">Three</option>
+	    <select class="custom-select" id="posicion" name="posicion" [(ngModel)]="jugador.posicion">
+        <option value=""></option>
+	      <option *ngFor="let p of posiciones" [value]="p.nombre">{{p.nombre}}</option>
 	    </select>
 	  </div>
 	   <div class="form-group col-md-6">
@@ -58,5 +57,5 @@
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas + 1">+</button>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">Registrar</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" (click)="guardar()">Registrar</button>
 </form>
