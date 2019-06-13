@@ -23,9 +23,8 @@ export class NuevoJugadorComponent implements OnInit {
   	
    }
 
- async ngOnInit() {
-     let that = this;
-     this.posiciones = await this.service.getPosicion().toPromise();
+ async ngOnInit() {     
+     this.posiciones = await this.service.getPosiciones().toPromise();
   }
 
   guardar(){

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EquiposComponent } from './equipos/equipos.component';
@@ -15,7 +15,8 @@ import { EquipoComponent } from './equipos/equipo/equipo.component';
 import { JugadorComponent } from './jugadores/jugador/jugador.component';
 import { TorneoComponent } from './torneo/torneo.component';
 import { DatePipe } from '@angular/common'
-
+import { ColorPickerModule } from 'ngx-color-picker';
+import { NuevoTorneoComponent } from './nuevo-torneo/nuevo-torneo.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:'jugadores',component:JugadoresComponent},
   {path:'nuevoEquipo',component:NuevoEquipoComponent},
   {path:'login',component:LoginComponent},
-  {path:'nuevoJugador',component:NuevoJugadorComponent}
+  {path:'nuevoJugador',component:NuevoJugadorComponent},
+  {path:'nuevoTorneo',component:NuevoTorneoComponent}
 ];
 
 @NgModule({
@@ -37,13 +39,16 @@ const routes: Routes = [
     LoginComponent,
     EquipoComponent,
     JugadorComponent,
-    TorneoComponent
+    TorneoComponent,
+    NuevoTorneoComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ColorPickerModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

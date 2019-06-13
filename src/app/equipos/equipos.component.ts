@@ -16,8 +16,10 @@ export class EquiposComponent implements OnInit {
   constructor(private service:EquipoService) { }
 
  async ngOnInit() {
- 	this.equipos =  await this.service.getEquipos().toPromise();
- 	console.log(this.equipos);
+ 	let resp =  await this.service.getEquipos().toPromise();
+ 	console.log(resp);
+ 		if(resp.code == 200){
+ 			this.equipos = resp.equipos;
+ 		}
   }
-
 }

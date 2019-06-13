@@ -14,26 +14,30 @@ export class EquipoService {
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
   constructor(private http:HttpClient) { }
 
-  getEquipos():Observable<Equipo[]>{
+/*  getEquipos():Observable<Equipo[]>{
   	return this.http.get(this.uri).pipe(
   		map((respose)=> respose as Equipo[])
   		);
 
+  }*/
+
+  getEquipos():Observable<any>{
+    return this.http.get(this.uri);
   }
 
   getEquipo(id:number):Observable<Equipo>{
 	  return this.http.get<Equipo>(`${this.uri}/${id}`);
   }
 
-  create(equipo:Equipo):Observable<Equipo>{
-  	return this.http.post<Equipo>(this.uri,equipo,{headers:this.httpHeaders})
+  create(equipo:Equipo):Observable<any>{
+  	return this.http.post<any>(this.uri,equipo,{headers:this.httpHeaders})
   }
 
   update(equipo:Equipo):Observable<void>{
   	return this.http.put<void>(`${this.uri}/${equipo.id}`,equipo,{headers:this.httpHeaders})
   }
 
-  delte(id):Observable<void>{
+  delete(id):Observable<void>{
   	return this.http.delete<void>(`${this.uri}/${id}`);
   }
 

@@ -1,19 +1,31 @@
 <h2 style="margin-top: 20px;">Nuevo Equipo</h2>
 <hr>
-<form>
+<form [formGroup]="registerEquipo" (ngSubmit)="onSubmit()">
   <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="nombreEquipo">Nombre:</label>
-        <input type="text" class="form-control" id="nombreEquipo">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]="equipo.nombre" placeholder="Nombre Equipo" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" >
+         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+               <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+          </div>
       </div>
       <div class="form-group col-md-6">
          <label for="torneo">Torneo:</label>
-        <select class="custom-select" id="torneo">
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <select class="custom-select" id="torneo" name="torneo"  [(ngModel)]="equipo.torneo" formControlName="torneo" [ngClass]="{ 'is-invalid': submitted && f.torneo.errors }"  [(ngModel)]=equipo.torneo >
+          <option value="-1">Seleccione...</option>
+          <option *ngFor="let p of torneo" [value]="p.nombre">{{p.nombre}} </option>
         </select>
+       <div *ngIf="submitted && f.torneo.errors" class="invalid-feedback">
+             <div *ngIf="f.torneo.errors.required">Torneo es requerido</div>
+        </div>
       </div>
+     <div class="form-group col-md-6">
+      <label for="color">Color: </label>
+       <input class="form-control" [(colorPicker)]="equipo.color" [style.background]="color" id="color" name="color"  [(ngModel)]="equipo.color" formControlName="color" [ngClass]="{ 'is-invalid': submitted && f.color.errors }" />
+        <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+             <div *ngIf="f.color.errors.required">Color es requerido</div>
+        </div>
+    </div>       
 </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">Registrar</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" >Registrar</button>
 </form>

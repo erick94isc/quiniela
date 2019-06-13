@@ -1,0 +1,8 @@
+mdb-color-picker {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  z-index: 1;
+}

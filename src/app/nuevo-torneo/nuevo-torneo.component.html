@@ -1,0 +1,36 @@
+<h2 style="margin-top: 20px;">Nuevo Torneo </h2>
+<hr>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="nombre">Nombre:</label>
+			<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" [(ngModel)]="torneo.nombre"  >
+			 <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+           		 <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+        	</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label for="categoria">Categoria:</label>
+			<input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoria" formControlName="categoria" [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }" [(ngModel)]="torneo.categoria" >
+			<div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
+           		 <div *ngIf="f.categoria.errors.required">Categoría es requerido</div>
+        	</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label for="fechaInicial">Fecha Inicia: </label>
+			<input type="date" id="fechaInicial" name="fechaInicial" class="date-picker" min="2019-01-01" formControlName="fechaInicial" [ngClass]="{ 'is-invalid': submitted && f.fechaInicial.errors }"  [(ngModel)]=torneo.fechaInicial>
+			<div *ngIf="submitted && f.fechaInicial.errors" class="invalid-feedback">
+           		 <div *ngIf="f.fechaInicial.errors.required">Fecha Inicia es requerido</div>
+        	</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label for="fechaFinal">Fecha Termina: </label>
+			<input type="date" id="fechaFinal" name="fechaFinal" class="date-picker" min="2019-01-01" formControlName="fechaFinal" [ngClass]="{ 'is-invalid': submitted && f.fechaFinal.errors }" [(ngModel)]=torneo.fecha_termina>
+			<div *ngIf="submitted && f.fechaFinal.errors" class="invalid-feedback">
+           		 <div *ngIf="f.fechaFinal.errors.required">Fecha Termina es requerido</div>
+        	</div>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" (click)="guardarTorneo()" >Registrar </button>
+	
+</form>
