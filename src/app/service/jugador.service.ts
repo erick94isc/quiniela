@@ -15,10 +15,8 @@ export class JugadorService {
 
   constructor(private http:HttpClient) { }
 
-  getJugadores():Observable<Jugador[]>{
-  return this.http.get(this.uri).pipe(
-  		map((respose)=> respose as Jugador[])
-  		);
+  getJugadores(id:number):Observable<any>{
+  return this.http.get(`${this.uri+'es'}/${id}`);
   }
 
   getJugador(id):Observable<Jugador>{

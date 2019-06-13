@@ -21,7 +21,7 @@ import { NuevoTorneoComponent } from './nuevo-torneo/nuevo-torneo.component';
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'equipos', component:EquiposComponent},
-  {path:'jugadores',component:JugadoresComponent},
+  {path:'jugadores/:id',component:JugadoresComponent},
   {path:'nuevoEquipo',component:NuevoEquipoComponent},
   {path:'login',component:LoginComponent},
   {path:'nuevoJugador',component:NuevoJugadorComponent},
