@@ -18,7 +18,5 @@ export class Jugador{
 		this.fecha_nacimiento = '';
 		this.posicion ='';
 		this.goles =0;
-		this.tarjetas['amarillas']= 0;
-		
 	}
 }

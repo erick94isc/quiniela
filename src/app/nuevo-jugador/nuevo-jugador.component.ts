@@ -19,14 +19,13 @@ export class NuevoJugadorComponent implements OnInit {
   posiciones:Posicion[];
   date:string;
   private idEquipo;
-  	constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe,private activated:ActivatedRoute) {
-  		
-  	
+  	constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe,private activated:ActivatedRoute) {	
    }
 
  async ngOnInit() {     
      this.posiciones = await this.service.getPosiciones().toPromise();
      this.idEquipo = this.activated.snapshot.paramMap.get('id');
+     console.log(this.idEquipo);
   }
 
   guardar(){
