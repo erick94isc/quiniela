@@ -11,7 +11,7 @@ export class Jugador{
          amarillas:number,
          rojas:number
   }];
-
+  equipo:string;
 	constructor(){
 		this.nombre='';
 		this.apellido = '';

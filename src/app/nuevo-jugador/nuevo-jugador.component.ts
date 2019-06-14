@@ -4,7 +4,7 @@ import {Posicion} from '../Model/posicion';
 import {PosicionService} from '../service/posicion.service';
 import {JugadorService} from '../service/jugador.service';
 import Swal from 'sweetalert2'
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import { DatePipe } from '@angular/common'
 
 
@@ -18,16 +18,19 @@ export class NuevoJugadorComponent implements OnInit {
 	jugador :Jugador= new Jugador();
   posiciones:Posicion[];
   date:string;
-  	constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe) {
+  private idEquipo;
+  	constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe,private activated:ActivatedRoute) {
   		
   	
    }
 
  async ngOnInit() {     
      this.posiciones = await this.service.getPosiciones().toPromise();
+     this.idEquipo = this.activated.snapshot.paramMap.get('id');
   }
 
   guardar(){
+    this.jugador.equipo = this.idEquipo;
     console.log(this.jugador);
     this.jugadorService.create(this.jugador).subscribe(
       response=>{
