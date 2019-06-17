@@ -23,8 +23,8 @@ export class JugadorService {
   	return this.http.get<Jugador>(`${this.uri}/${id}`)
   }
 
-  create(jugador:Jugador): Observable<Jugador>{
-  	return this.http.post<Jugador>(this.uri,jugador,{headers:this.httpHeaders});
+  create(jugador:Jugador): Observable<any>{
+  	return this.http.post<any>(this.uri,jugador,{headers:this.httpHeaders});
   }
 
   delete(id):Observable<void>{

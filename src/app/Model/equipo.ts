@@ -3,8 +3,8 @@ export class Equipo {
 	nombre:string;
 	torneo:string;
 	color:string;
-	//posicion:number;
-	//puntos:number;
+	posicion:number;
+	puntos:number;
 	//partidos_jugados:number;
 	//juegos_ganados:number;
 	//juegos_empatados:number;
@@ -12,4 +12,9 @@ export class Equipo {
 	//goles_favor:number;
 	//goles_contra:number;
 	//diferencia_goles:number;
+
+		constructor(){
+			this.posicion = 0;
+			this.puntos = 0;
+		}
 }

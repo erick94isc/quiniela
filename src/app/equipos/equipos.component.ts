@@ -22,4 +22,8 @@ export class EquiposComponent implements OnInit {
  			this.equipos = resp.equipos;
  		}
   }
+
+  eliminar(){
+  	console.log("eliminar");
+  }
 }

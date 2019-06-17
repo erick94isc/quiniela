@@ -28,18 +28,17 @@ export class NuevoJugadorComponent implements OnInit {
      console.log(this.idEquipo);
   }
 
-  guardar(){
+ async guardar(){
     this.jugador.equipo = this.idEquipo;
     console.log(this.jugador);
-    this.jugadorService.create(this.jugador).subscribe(
-      response=>{
-        console.log(response);
-        this.router.navigate(['/jugadores']);
-        Swal.fire('','Jugador guardado','success');
-      },error=>{
-        Swal.fire('Error','No fue posible guardar el jugador','error');
-        console.log(error);
-      });
+    let response = await this.jugadorService.create(this.jugador).toPromise();
+    if(response.code = 200){
+        Swal.fire('','Equipo guardado correctamente','success');
+        this.router.navigate(['/jugadores',this.idEquipo]);
+      } 
+      else {
+       Swal.fire('Error','No fue posible guardar el equipo','error');
+      } 
   }
 
 }
