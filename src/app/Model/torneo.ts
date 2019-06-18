@@ -3,5 +3,6 @@ export class Torneo {
 	nombre:string;
 	categoria:string;
 	fechaInicial:Date;
-	fechaFinal:Date;
+	fechaFinal:Date;	
 }
+

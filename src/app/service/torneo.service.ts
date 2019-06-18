@@ -15,7 +15,7 @@ export class TorneoService {
   constructor(private http:HttpClient) { }
 
 
-   getTorneos():Observable<Torneo[]>{
+   getTorneos():Observable<any>{
    		return this.http.get(url.urlEndPoint+'/torneo').pipe(
    			map((respose)=> respose as Torneo[])
    		);
@@ -25,8 +25,8 @@ export class TorneoService {
    	 return this.http.get<Torneo>(`${this.uri}/${id}`);
    }
 
-   create(torneo:Torneo):Observable<Torneo>{
-   	 return this.http.post<Torneo>(this.uri,torneo,{headers:this.httpHeaders})
+   create(torneo:Torneo):Observable<any>{
+   	 return this.http.post<any>(this.uri,torneo,{headers:this.httpHeaders})
    }
 
    update(torneo:Torneo):Observable<void>{
