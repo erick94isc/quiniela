@@ -1,37 +1,58 @@
 <h2 style="margin-top: 20px;">Nuevo Jugador</h2>
 <hr>
-<form>
+<form [formGroup]="jugadorForm" (ngSubmit)="onSubmit()" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre:</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="jugador.nombre">
+      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="jugador.nombre" formControlName="nombre" placeholder="Nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" >
+      <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+               <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+      </div>
     </div>
     <div class="form-group col-md-6">
       <label for="apellido">Apellido:</label>
-       <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="jugador.apellido">
+       <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="jugador.apellido" formControlName="apellido" placeholder="Apellido" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }"  >
+       <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+               <div *ngIf="f.apellido.errors.required">Apellido es requerido</div>
+          </div>
     </div>
   </div>
    <div class="form-row">
     <div class="form-group col-md-6">
       <label for="telefono">Teléfono:</label>
-      <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="jugador.telefono">
+      <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="jugador.telefono" formControlName="telefono" 
+      placeholder="Telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" >
+         <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+               <div *ngIf="f.telefono.errors.required">Telefono es requerido</div>
+          </div>
     </div>
     <div class="form-group col-md-6">
       <label for="fechaNacimiento">Fecha Nacimiento:</label>
-      <input type="date" id="fechaNacimiento" class="form-group" class="date-picker" name="fecha_nacimiento" min="1950-12-01" [(ngModel)]="jugador.fecha_nacimiento">
+      <input type="date" id="fechaNacimiento" class="form-group" class="date-picker" name="fecha_nacimiento" min="1950-12-01" [(ngModel)]="jugador.fecha_nacimiento" formControlName="fecha_nacimiento" placeholder="
+      Telefono" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" >
+      <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
+               <div *ngIf="f.fecha_nacimiento.errors.required">Fecha Nacimiento es requerido</div>
+          </div>
     </div>
   </div>
   <div class="form-row">
 	 <div class="form-group col-md-6">
       <label for="posicion">Posición:</label>
-	    <select class="custom-select" id="posicion" name="posicion" [(ngModel)]="jugador.posicion">
+	    <select class="custom-select" id="posicion" name="posicion" [(ngModel)]="jugador.posicion" formControlName="posicion" placeholder="
+      posicion" [ngClass]="{ 'is-invalid': submitted && f.posicion.errors }">
         <option value=""></option>
 	      <option *ngFor="let p of posiciones" [value]="p.nombre">{{p.nombre}}</option>
 	    </select>
+      <div *ngIf="submitted && f.posicion.errors" class="invalid-feedback">
+               <div *ngIf="f.posicion.errors.required">Posicion es requerido</div>
+          </div>
 	  </div>
 	   <div class="form-group col-md-6">
 	   	<label for="numero">Número:</label>
-       <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="jugador.numero">
+       <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="jugador.numero" placeholder="numero" formControlName="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }"  >
+        <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+               <div *ngIf="f.numero.errors.required">Numero es requerido</div>
+          </div>
 	   </div>
 </div>
  <div class="form-row" style="border: 1px solid rgba(0,0,0,.125);padding: 15px;" *ngIf="false">
@@ -39,23 +60,32 @@
       <label >Goles:</label>
       <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles - 1">-</button>
-      <input type="number" name="goles" disabled="false" class=" input-disable" [(ngModel)]="jugador.goles">
+      <input type="number" name="goles" disabled="false" class=" input-disable" [(ngModel)]="jugador.goles" placeholder="goles" formControlName="goles" [ngClass]="{ 'is-invalid': submitted && f.goles.errors }">           
+      <div *ngIf="submitted && f.goles.errors" class="invalid-feedback">
+      <div *ngIf="f.goles.errors.required">Goles es requerido</div>
+      </div>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles + 1">+</button>
     </div>
     <div class="form-group col-md-4">
       <label >Tarjetas Amarillas:</label>
        <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas - 1">-</button>
-      <input type="number" name="tarjetas_amarillas" disabled="false" class=" input-disable" [(ngModel)]="jugador.tarjetas_amarillas">
+      <input type="number" name="tarjetas_amarillas" disabled="false" class=" input-disable" [(ngModel)]="jugador.tarjetas_amarillas" placeholder="tarjetas_amarillas" formControlName="tarjetas_amarillas" [ngClass]="{ 'is-invalid': submitted && f.tarjetas_amarillas.errors }"> 
+      <div *ngIf="submitted && f.tarjetas_amarillas.errors" class="invalid-feedback">
+      <div *ngIf="f.tarjetas_amarillas.errors.required">Tarjetas Amarillas es requerido</div>
+      </div>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas + 1">+</button>
     </div>
      <div class="form-group col-md-4">
       <label>Tarjetas Rojas:</label>
        <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas - 1">-</button>
-      <input type="number" name="tarjetas_rojas" disabled="false" class="input-disable" [(ngModel)]="jugador.tarjetas_rojas">
+      <input type="number" name="tarjetas_rojas" disabled="false" class="input-disable" [(ngModel)]="jugador.tarjetas_rojas" placeholder="tarjetas_rojas" formControlName="tarjetas_rojas" [ngClass]="{ 'is-invalid': submitted && f.tarjetas_rojas.errors }" >       
+      <div *ngIf="submitted && f.tarjetas_rojas.errors" class="invalid-feedback">
+      <div *ngIf="f.tarjetas_rojas.errors.required">Tarjetas Amarillas es requerido</div>
+      </div>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas + 1">+</button>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" (click)="guardar()">Registrar</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" >Registrar</button>
 </form>
