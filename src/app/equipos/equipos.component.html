@@ -6,8 +6,8 @@
 				<h3 style="font-weight: bold;">Equipos</h3>
 			</div>
 			<div class="col-3 text-right">
-				<select class="custom-select" id="torneo" [(ngModel)]="selectedToreno" (ngModelChange)="searchByLeague()">
-				   <option value="-1">Seleccione...</option>
+				<select class="custom-select" id="torneo" [(ngModel)]="selectedTorneo" (ngModelChange)="searchByLeague()">
+				   <option value="">Seleccione...</option>
           		   <option *ngFor="let p of torneos" [value]="p.nombre">{{p.nombre}} </option>
 				 </select>
 			</div>

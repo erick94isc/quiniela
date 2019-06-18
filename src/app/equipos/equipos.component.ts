@@ -17,11 +17,12 @@ export class EquiposComponent implements OnInit {
   jugadores:Jugador[];
   equipos : Equipo[];
   torneos: Torneo[];
-  selectedToreno:string;
+  selectedTorneo:string="";
+  nombreBuscar:string;
   constructor(private service:EquipoService, private torneoService:TorneoService) { }
 
  async ngOnInit() {
- 	let resp =  await this.service.getEquipos("").toPromise();
+ 	let resp =  await this.service.getEquipos("","").toPromise();
  	console.log(resp);
  		if(resp.code == 200){
  			this.equipos = resp.equipos;
@@ -40,14 +41,20 @@ export class EquiposComponent implements OnInit {
   }
 
  async onSearchChange(searchValue : string ) {  
-     let resp =  await this.service.getEquipos(searchValue).toPromise();
-   console.log(resp);
+   this.nombreBuscar = searchValue;
+     let resp =  await this.service.getEquipos(searchValue,(this.selectedTorneo != "") ? this.selectedTorneo: "").toPromise();
+     console.log(resp);
      if(resp.code == 200){
        this.equipos = resp.equipos;
      }
   }
 
-  searchByLeague(){
-   
+ async searchByLeague(){
+    console.log(this.selectedTorneo)
+     let resp =  await this.service.getEquipos("",this.selectedTorneo).toPromise();
+     console.log(resp);
+     if(resp.code == 200){
+       this.equipos = resp.equipos;
+     }
   }
 }

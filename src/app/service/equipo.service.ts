@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpParams} from '@angular/common/http';
 import {Equipo} from '../Model/equipo';
 import * as url from '../urlEndPoint';
 import {Observable,of} from 'rxjs';
@@ -14,12 +14,12 @@ export class EquipoService {
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
   constructor(private http:HttpClient) { }
 
-  getEquipos(name:string):Observable<any>{
-    if(name == ""){
-          return this.http.get(this.uri);
-     }else{
-         return this.http.get(`${this.uri}/${name}`)
-        }
+  getEquipos(name:string,torneo:string):Observable<any>{
+    let params = new HttpParams();
+
+    params = params.append('nombre',name);
+    params = params.append('torneo',torneo);
+    return this.http.get(this.uri,{headers:this.httpHeaders,params:params});
   }
 
   getEquipo(id:number):Observable<Equipo>{
