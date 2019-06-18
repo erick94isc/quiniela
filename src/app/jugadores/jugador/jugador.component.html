@@ -1,6 +1,11 @@
 
 <div class="card">
                 <div class="card-body">
+                    <div class="float-right">
+                        <a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Jugador" style="padding-right: 2px;" [routerLink]="['/nuevoJugador',id_jugador]">
+                            <i class="material-icons" style="font-size: 19px;">create</i></a>
+                        <a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Jugador" (click)="eliminarJugador()" style="padding-left: 2px;"><i class="material-icons" style="font-size: 19px;">delete</i></a>
+                    </div>
                     <div class="user-image text-center">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
                     </div>

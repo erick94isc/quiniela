@@ -12,9 +12,4 @@ export class Equipo {
 	//goles_favor:number;
 	//goles_contra:number;
 	//diferencia_goles:number;
-
-		constructor(){
-			this.posicion = 0;
-			this.puntos = 0;
-		}
 }

@@ -53,6 +53,7 @@ async guardarEquipo() {
       console.log(response);
       if(response.code = 200){
         Swal.fire('','Equipo guardado correctamente','success');
+        this.router.navigate(['/equipos']);
       } else {
        Swal.fire('Error','No fue posible guardar el equipo','error');
       }

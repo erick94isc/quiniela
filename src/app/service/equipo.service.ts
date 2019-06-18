@@ -14,15 +14,12 @@ export class EquipoService {
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
   constructor(private http:HttpClient) { }
 
-/*  getEquipos():Observable<Equipo[]>{
-  	return this.http.get(this.uri).pipe(
-  		map((respose)=> respose as Equipo[])
-  		);
-
-  }*/
-
-  getEquipos():Observable<any>{
-    return this.http.get(this.uri);
+  getEquipos(name:string):Observable<any>{
+    if(name == ""){
+          return this.http.get(this.uri);
+     }else{
+         return this.http.get(`${this.uri}/${name}`)
+        }
   }
 
   getEquipo(id:number):Observable<Equipo>{

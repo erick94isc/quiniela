@@ -2,11 +2,20 @@
 <div class="card" style="margin-top: 20px;">
 	<div class="card-header header-blue">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-4">
 				<h3 style="font-weight: bold;">Equipos</h3>
 			</div>
-			<div class="col-4">
-						<button type="button" class="btn btn-outline-secondary" [routerLink]="['/nuevoEquipo']" data-toggle="tooltip" data-placement="top" title="Nuevo Equipo"><i class="material-icons">add</i></button>
+			<div class="col-3 text-right">
+				<select class="custom-select" id="torneo" [(ngModel)]="selectedToreno" (ngModelChange)="searchByLeague()">
+				   <option value="-1">Seleccione...</option>
+          		   <option *ngFor="let p of torneos" [value]="p.nombre">{{p.nombre}} </option>
+				 </select>
+			</div>
+			<div class="col-3 text-right">
+				<input type="text" class="form-control" placeholder="Buscar..." (input)="onSearchChange($event.target.value)" >
+			</div>
+			<div class="col-2 text-right">
+						<button type="button" class="btn btn-outline-secondary" [routerLink]="['/nuevoEquipo']" data-toggle="tooltip" data-placement="top" title="Nuevo Equipo"><i class="material-icons">group_add</i></button>
 			</div>
 		</div>
   </div>
@@ -29,7 +38,7 @@
 	    <td>{{equipo.puntos}}</td>
 	    <th>
 	    	<a class="btn" [routerLink]="['/jugadores',equipo._id]" data-toggle="tooltip" data-placement="top" title="Ver Jugadores"><i class="material-icons">supervised_user_circle</i></a>
-	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="eliminar()"><i class="material-icons">delete</i></a>
+	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="delete()"><i class="material-icons">delete</i></a>
 	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Equipo" [routerLink]="['/nuevoEquipo']"><i class="material-icons">create</i></a>
 	    </th>
   	 </tr>

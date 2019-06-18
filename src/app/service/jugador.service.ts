@@ -27,11 +27,11 @@ export class JugadorService {
   	return this.http.post<any>(this.uri,jugador,{headers:this.httpHeaders});
   }
 
-  delete(id):Observable<void>{
+  delete(id):Observable<any>{
   	return this.http.delete<void>(`${this.uri}/${id}`)
   }
 
-  update(jugador:Jugador):Observable<void>{
+  update(jugador:Jugador):Observable<any>{
   		return this.http.put<void>(`${this.uri}/${jugador.id}`,jugador,{headers:this.httpHeaders})
   }
 
