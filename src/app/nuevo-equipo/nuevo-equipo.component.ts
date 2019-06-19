@@ -24,7 +24,7 @@ export class NuevoEquipoComponent implements OnInit {
    }
 
    ngOnInit() { 
-   	this.torneoservice.getTorneos().subscribe(
+   	this.torneoservice.getTorneos("").subscribe(
        resp=>{
          this.torneo = resp;
        });
@@ -33,7 +33,6 @@ export class NuevoEquipoComponent implements OnInit {
          torneo: ['', Validators.required],
          color: ['', Validators.nullValidator]         
      });
-     
   }
 
   get f() {return this.registerEquipo.controls; }

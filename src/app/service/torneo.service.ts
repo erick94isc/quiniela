@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpParams} from '@angular/common/http';
 import * as url from '../urlEndPoint';
 import {Observable,of} from 'rxjs';
 import {Torneo} from '../Model/torneo';
@@ -15,10 +15,11 @@ export class TorneoService {
   constructor(private http:HttpClient) { }
 
 
-   getTorneos():Observable<any>{
-   		return this.http.get(url.urlEndPoint+'/torneo').pipe(
-   			map((respose)=> respose as Torneo[])
-   		);
+   getTorneos(name:string):Observable<any>{
+      let params = new HttpParams();
+
+      params = params.append('nombre',name);      
+      return this.http.get(this.uri,{headers:this.httpHeaders,params:params});   		
    }
 
    getTorneo(id:number):Observable<Torneo>{
@@ -33,7 +34,7 @@ export class TorneoService {
    	 return this.http.put<void>(`${this.uri}/${torneo.id}`,torneo,{headers:this.httpHeaders})
    }
 
-   delete(id):Observable<void>{
+   delete(id):Observable<any>{
    	return this.http.delete<void>(`${this.uri}/${id}`);
    } 
 

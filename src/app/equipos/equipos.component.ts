@@ -27,7 +27,7 @@ export class EquiposComponent implements OnInit {
  		if(resp.code == 200){
  			this.equipos = resp.equipos;
  		}
-    this.torneoService.getTorneos().subscribe(
+    this.torneoService.getTorneos("").subscribe(
      resp=>{
            this.torneos = resp;
      },error=>{

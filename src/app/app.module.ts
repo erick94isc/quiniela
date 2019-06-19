@@ -25,7 +25,8 @@ const routes: Routes = [
   {path:'nuevoEquipo',component:NuevoEquipoComponent},
   {path:'login',component:LoginComponent},
   {path:'nuevoJugador/:id',component:NuevoJugadorComponent},
-  {path:'nuevoTorneo',component:NuevoTorneoComponent}
+  {path:'nuevoTorneo',component:NuevoTorneoComponent},
+  {path:'torneo', component:TorneoComponent}
 ];
 
 @NgModule({

@@ -23,7 +23,7 @@ export class NuevoJugadorComponent implements OnInit {
   constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe,private activated:ActivatedRoute, private formBuilder: FormBuilder) {	
   }
 
-  ngOnInit() {          
+   ngOnInit() {          
      this.service.getPosiciones().subscribe(
        resp=>{
           this.posiciones = resp;
