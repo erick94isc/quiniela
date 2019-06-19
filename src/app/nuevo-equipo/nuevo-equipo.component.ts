@@ -49,15 +49,19 @@ export class NuevoEquipoComponent implements OnInit {
   }
 
 async guardarEquipo() {      
-      let response  = await this.equipoService.create(this.equipo).toPromise();      
-      console.log(response);
-      if(response.code = 200){
-        Swal.fire('','Equipo guardado correctamente','success');
-        this.router.navigate(['/equipos']);
-      } else {
-       Swal.fire('Error','No fue posible guardar el equipo','error');
+      try{
+          let response  = await this.equipoService.create(this.equipo).toPromise();      
+          console.log(response);
+          if(response.code = 200){
+            Swal.fire('','Equipo guardado correctamente','success');
+            this.router.navigate(['/equipos']);
+          } else {
+           Swal.fire('Error','No fue posible guardar el equipo','error');
+          }
+      }catch(e){
+          Swal.fire('Error',e.error.message ,'error');      
+          console.log(e);
       }
-  
   }
 
 }
