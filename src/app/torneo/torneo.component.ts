@@ -21,35 +21,29 @@ export class TorneoComponent implements OnInit {
   	let resp = await this.torneoService.getTorneos("").toPromise();
     console.log(resp);
   	if(resp.code == 200) {
-  		this.torneos = resp;
+  		this.torneos = resp.torneos;
   	}
   
   }
 
-  eliminar(id:string ){
-  	this.id_torneo = id;
-  	console.log(this.id_torneo);
-  }
-
-
-  /*async eliminar(id:string){ 
-  //Swal.fire({ title: '¿Estas seguro?', text: "Desea eliminar el torneo",
-  //type: 'warning',   showCancelButton: true, confirmButtonColor: '#3085d6',
-  //cancelButtonColor: '#d33', confirmButtonText: 'Si!', cancelButtonText : 'Cancelar!'}).then((result) => {  
-  //if (result.value) {
-  	//metodo para eliminar
-  	this.id_torneo = id;	
-    console.log(this.id_torneo);
-    let response = await this.torneoService.delete(this.id_torneo).toPromise();
-    if(response.code == 200){
-    Swal.fire('Eliminado', 'Torneo se elimino correctamente',
-      'success') 
-    } else {
-      Swal.fire('Error','No fue posible eliminar el jugador','error');	
-    }
-  //}
-});*/
-//}
+  eliminar(id:string){ 
+      Swal.fire({ title: '¿Estas seguro?', text: "Desea eliminar el torneo",
+      type: 'warning',   showCancelButton: true, confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33', confirmButtonText: 'Si!', cancelButtonText : 'Cancelar!'}).then((result) => {  
+      if (result.value) {  
+      	this.id_torneo = id;	
+        this.torneoService.delete(this.id_torneo).subscribe(
+            resp=>{
+               if(resp.code == 200){
+                  Swal.fire('Eliminado', 'Torneo se elimino correctamente', 'success') 
+                  } else {
+                    Swal.fire('Error','No fue posible eliminar el jugador','error');  
+                  }
+                }
+          );
+      }
+    });
+}
 
   async onSearchChange(searchValue : string){
   	this.nombreBuscar = searchValue;

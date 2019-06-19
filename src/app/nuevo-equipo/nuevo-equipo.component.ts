@@ -26,7 +26,10 @@ export class NuevoEquipoComponent implements OnInit {
    ngOnInit() { 
    	this.torneoservice.getTorneos("").subscribe(
        resp=>{
-         this.torneo = resp;
+         if(resp.code == 200)
+         {
+         this.torneo = resp.torneos;
+       }
        });
       this.registerEquipo = this.formBuilder.group({
          nombre: ['', Validators.required],

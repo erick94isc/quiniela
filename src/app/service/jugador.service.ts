@@ -28,7 +28,7 @@ export class JugadorService {
   }
 
   delete(id):Observable<any>{
-  	return this.http.delete<void>(`${this.uri}/${id}`)
+  	return this.http.delete<any>(`${this.uri}/${id}`)
   }
 
   update(jugador:Jugador):Observable<any>{

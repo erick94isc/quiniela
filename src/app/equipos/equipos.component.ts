@@ -23,17 +23,14 @@ export class EquiposComponent implements OnInit {
 
  async ngOnInit() {
  	let resp =  await this.service.getEquipos("","").toPromise();
- 	console.log(resp);
  		if(resp.code == 200){
  			this.equipos = resp.equipos;
  		}
-    this.torneoService.getTorneos("").subscribe(
-     resp=>{
-           this.torneos = resp;
-     },error=>{
-       console.log(error);
-     });
-
+  let respTorneos = await this.torneoService.getTorneos("").toPromise();
+  console.log(respTorneos);
+      if(respTorneos.code == 200){
+          this.torneos = respTorneos.torneos;
+      }
   }
 
   delete(){
