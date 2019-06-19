@@ -43,12 +43,18 @@ export class NuevoTorneoComponent implements OnInit {
   } 
 
   async guardarTorneo(){
+    try {
     let response = await this.torneoService.create(this.torneo).toPromise();    
     console.log(response);
-    if(response.code = 200){
-      Swal.fire('','Torneo guardado correctamente', 'success');
-     } else {
-        Swal.fire('Error','No fue posible guardar el torneo','error');
-    }  	
+      if(response.code = 200){
+        Swal.fire('','Torneo guardado correctamente', 'success');
+       }else {
+          Swal.fire('Error','No fue posible guardar el torneo','error');
+       }    
+    }catch(e){
+      Swal.fire('Error',e.error.message ,'error');
+      console.log(e);
+    }
+    
   }
 }
