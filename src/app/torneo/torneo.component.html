@@ -4,8 +4,11 @@
 			<div class="col-6">
 				<h2 style="font-weight: bold;">Torneos</h2>
 			</div>
-			<div class="col-3 text-right">
+			<div class="col-4 text-right">
 				<input type="text" class="form-control" placeholder="Buscar..." (input)="onSearchChange($event.target.value)">
+			</div>
+			<div class="col-2 text-right">
+						<button type="button" class="btn btn-outline-secondary" routerLink="/nuevoTorneo/nuevo" data-toggle="tooltip" data-placement="top" title="Nuevo Torneo"><i class="material-icons">playlist_add</i></button>
 			</div>	
 		</div>		
 	</div>
@@ -27,9 +30,10 @@
 				<td>{{torneo.categoria  | titlecase}}</td>
 				<td>{{torneo.fecha_inicio | date: 'dd//MM/yyyy'}}</td>
 				<td>{{torneo.fecha_fin | date:'dd/MM/yyyy'}}</td>			
-				<th>
+				<td>
+					<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Torneo" [routerLink]="['/nuevoTorneo',torneo._id]"><i class="material-icons">create</i></a>
 					<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Torneo" (click)="eliminar(torneo._id)"><i class="material-icons">delete</i></a> 
-				</th>
+				</td>
 			</tr>
 		</tbody>
 	</table>

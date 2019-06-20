@@ -15,7 +15,7 @@
 				<input type="text" class="form-control" placeholder="Buscar..." (input)="onSearchChange($event.target.value)" >
 			</div>
 			<div class="col-2 text-right">
-						<button type="button" class="btn btn-outline-secondary" [routerLink]="['/nuevoEquipo']" data-toggle="tooltip" data-placement="top" title="Nuevo Equipo"><i class="material-icons">group_add</i></button>
+						<button type="button" class="btn btn-outline-secondary" routerLink="/nuevoEquipo/nuevo" data-toggle="tooltip" data-placement="top" title="Nuevo Equipo"><i class="material-icons">group_add</i></button>
 			</div>
 		</div>
   </div>
@@ -27,20 +27,23 @@
 		      <th scope="col">Torneo</th>
 		      <th scope="col">Posición</th>
 		      <th scope="col">Puntos</th>
-		      <th></th>
+		      <th scope="col">Opciones</th>
 		    </tr>
   </thead>
   <tbody>
   	 <tr *ngFor="let equipo of equipos">
-  	 	<td>{{equipo.nombre | titlecase}}</td>
+  	 	<td>
+  	 		<i class="material-icons" [ngStyle]="{ 'color': equipo.color }" >accessibility_new</i>
+  	 		{{equipo.nombre | titlecase}}
+  	 	</td>
 	    <td>{{equipo.torneo | titlecase}}</td>
 	    <td>{{equipo.posicion}}</td>
 	    <td>{{equipo.puntos}}</td>
-	    <th>
+	    <td>
 	    	<a class="btn" [routerLink]="['/jugadores',equipo._id]" data-toggle="tooltip" data-placement="top" title="Ver Jugadores"><i class="material-icons">supervised_user_circle</i></a>
-	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="delete()"><i class="material-icons">delete</i></a>
-	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Equipo" [routerLink]="['/nuevoEquipo']"><i class="material-icons">create</i></a>
-	    </th>
+	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Equipo" [routerLink]="['/nuevoEquipo',equipo._id]"><i class="material-icons">create</i></a>
+	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="delete()"><i class="material-icons">delete</i></a>  	
+	    </td>
   	 </tr>
   </tbody>
   	</table>

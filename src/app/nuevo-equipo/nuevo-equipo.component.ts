@@ -5,7 +5,7 @@ import {Torneo} from '../Model/torneo';
 import {TorneoService} from '../service/torneo.service';
 import {EquipoService} from '../service/equipo.service';
 import Swal from 'sweetalert2'
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -20,17 +20,30 @@ export class NuevoEquipoComponent implements OnInit {
   equipo: Equipo = new Equipo();   	
   color: string;
   torneo : Torneo[];
-  constructor(private torneoservice:TorneoService, private equipoService: EquipoService , private router:Router , private formBuilder: FormBuilder) {    
+  title:string;
+  private id;
+  isNew:boolean;
+  constructor(private torneoservice:TorneoService, private equipoService: EquipoService , private router:Router , 
+            private formBuilder: FormBuilder, private activatedRoute:ActivatedRoute) {    
    }
 
    ngOnInit() { 
-   	this.torneoservice.getTorneos("").subscribe(
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.torneoservice.getTorneos("").subscribe(
        resp=>{
          if(resp.code == 200)
          {
          this.torneo = resp.torneos;
        }
        });
+      if(this.id !== 'nuevo'){
+        this.title ='Editar Equipo';
+        this.getEquipo();
+        this.isNew = false;
+      }else{
+        this.title = 'Nuevo Equipo';
+        this.isNew = true;
+      }
       this.registerEquipo = this.formBuilder.group({
          nombre: ['', Validators.required],
          torneo: ['', Validators.required],
@@ -39,6 +52,20 @@ export class NuevoEquipoComponent implements OnInit {
   }
 
   get f() {return this.registerEquipo.controls; }
+
+ async getEquipo(){
+   try{
+   let resp= await this.equipoService.getEquipo(this.id).toPromise();
+      if(resp.code == 200)
+         {
+         this.equipo = resp.equipo;
+         console.log(this.equipo);
+       }
+     }
+     catch(e){
+       Swal.fire('Error',e.error.message ,'error');    
+     }
+  }
 
   onSubmit(){
     this.submitted = true;
@@ -52,7 +79,12 @@ export class NuevoEquipoComponent implements OnInit {
 
 async guardarEquipo() {      
       try{
-          let response  = await this.equipoService.create(this.equipo).toPromise();      
+        var response;
+          if(this.isNew){
+             response= await this.equipoService.create(this.equipo).toPromise();    
+            } else{
+              response = await this.equipoService.update(this.equipo).toPromise(); 
+            } 
           console.log(response);
           if(response.code = 200){
             Swal.fire('','Equipo guardado correctamente','success');

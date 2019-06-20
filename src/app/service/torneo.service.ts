@@ -22,8 +22,8 @@ export class TorneoService {
       return this.http.get(this.uri,{headers:this.httpHeaders,params:params});   		
    }
 
-   getTorneo(id:number):Observable<Torneo>{
-   	 return this.http.get<Torneo>(`${this.uri}/${id}`);
+   getTorneo(id:number):Observable<any>{
+   	 return this.http.get<any>(`${this.uri}/${id}`);
    }
 
    create(torneo:Torneo):Observable<any>{
@@ -31,7 +31,7 @@ export class TorneoService {
    }
 
    update(torneo:Torneo):Observable<void>{
-   	 return this.http.put<void>(`${this.uri}/${torneo.id}`,torneo,{headers:this.httpHeaders})
+   	 return this.http.put<void>(`${this.uri}/${torneo._id}`,torneo,{headers:this.httpHeaders})
    }
 
    delete(id):Observable<any>{
