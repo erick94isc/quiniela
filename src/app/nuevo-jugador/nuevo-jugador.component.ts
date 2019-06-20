@@ -68,15 +68,19 @@ export class NuevoJugadorComponent implements OnInit {
  }
 
  async guardar(){
-    this.jugador.equipo = this.idEquipo;
-    let response = await this.jugadorService.create(this.jugador).toPromise();
-    if(response.code = 200){
-        Swal.fire('','Equipo guardado correctamente','success');
-        this.router.navigate(['/jugadores',this.idEquipo]);
-      } 
-      else {
-       Swal.fire('Error','No fue posible guardar el equipo','error');
-      } 
+   try{
+        this.jugador.equipo = this.idEquipo;
+        let response = await this.jugadorService.create(this.jugador).toPromise();
+        if(response.code = 200){
+            Swal.fire('','Equipo guardado correctamente','success');
+            this.router.navigate(['/jugadores',this.idEquipo]);
+          } 
+          else {
+           Swal.fire('Error','No fue posible guardar el equipo','error');
+          } 
+      }catch(e){
+        Swal.fire('Error', e.error.message,'error')
+      }
   }
 
   get f() { return this.jugadorForm.controls; }

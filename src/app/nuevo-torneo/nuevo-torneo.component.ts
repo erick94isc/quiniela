@@ -69,7 +69,6 @@ export class NuevoTorneoComponent implements OnInit {
   } 
 
   async guardarTorneo(){
-
     try{
        var response;
           if(this.isNew){
