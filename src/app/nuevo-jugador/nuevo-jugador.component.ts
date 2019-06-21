@@ -19,8 +19,11 @@ export class NuevoJugadorComponent implements OnInit {
   jugador :Jugador= new Jugador();
   posiciones:Posicion[];  
   private idEquipo;  
-  
-  constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, private datepipe:DatePipe,private activated:ActivatedRoute, private formBuilder: FormBuilder) {	
+  private idJugador;
+  isNew:boolean;
+  title:string;
+  constructor(private service:PosicionService,private jugadorService:JugadorService, private router:Router, 
+              private datepipe:DatePipe,private activated:ActivatedRoute, private formBuilder: FormBuilder) {	
   }
 
    ngOnInit() {          
@@ -28,8 +31,16 @@ export class NuevoJugadorComponent implements OnInit {
        resp=>{
           this.posiciones = resp;
        });
-     this.idEquipo = this.activated.snapshot.paramMap.get('id');
-     console.log(this.idEquipo);
+    
+     if(this.activated.snapshot.paramMap.get('id') == 'nuevo'){
+        this.idEquipo = this.activated.snapshot.paramMap.get('id');
+        this.isNew = true;
+     }else{
+        this.idJugador = this.activated.snapshot.paramMap.get('id');
+        this.isNew = false;
+        this.getJugador();
+     }
+
      this.jugadorForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['' , Validators.required],
@@ -44,10 +55,21 @@ export class NuevoJugadorComponent implements OnInit {
     this.jugador.fecha_nacimiento = this.datepipe.transform(new Date(), "dd/MM/yyyy");          
   }
 
+ async getJugador(){
+   try{
+     let resp = await this.jugadorService.getJugador(this.idJugador).toPromise();
+      if(resp.code == 200)
+         {
+         this.jugador = resp.jugador;
+       }
+   }catch(e){
+     Swal.fire('Error',e.error.message ,'error');    
+   }
+ }
+
  async guardar(){
    try{
         this.jugador.equipo = this.idEquipo;
-        console.log(this.jugador);
         let response = await this.jugadorService.create(this.jugador).toPromise();
         if(response.code = 200){
             Swal.fire('','Equipo guardado correctamente','success');
@@ -58,7 +80,6 @@ export class NuevoJugadorComponent implements OnInit {
           } 
       }catch(e){
         Swal.fire('Error', e.error.message,'error')
-        console.log(e);
       }
   }
 

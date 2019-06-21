@@ -1,5 +1,5 @@
 export class Equipo {
-	id:number;
+	_id:number;
 	nombre:string;
 	torneo:string;
 	color:string;

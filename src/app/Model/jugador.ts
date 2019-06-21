@@ -1,5 +1,5 @@
 export class Jugador{
-	id:number;
+	_id:number;
 	nombre:string;
 	apellido:string;
 	fecha_nacimiento:string;
@@ -7,10 +7,10 @@ export class Jugador{
 	numero:number;
 	telefono:number;
 	goles:number;
-	tarjetas:[{
+	tarjetas:{
          amarillas:number,
          rojas:number
-  }];
+  };
   equipo:string;
 	constructor(){
 		this.nombre='';

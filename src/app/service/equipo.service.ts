@@ -22,8 +22,8 @@ export class EquipoService {
     return this.http.get(this.uri,{headers:this.httpHeaders,params:params});
   }
 
-  getEquipo(id:number):Observable<Equipo>{
-	  return this.http.get<Equipo>(`${this.uri}/${id}`);
+  getEquipo(id:number):Observable<any>{
+	  return this.http.get<any>(`${this.uri}/${id}`);
   }
 
   create(equipo:Equipo):Observable<any>{
@@ -31,11 +31,11 @@ export class EquipoService {
   }
 
   update(equipo:Equipo):Observable<void>{
-  	return this.http.put<void>(`${this.uri}/${equipo.id}`,equipo,{headers:this.httpHeaders})
+  	return this.http.put<void>(`${this.uri}/${equipo._id}`,equipo,{headers:this.httpHeaders})
   }
 
   delete(id):Observable<any>{
-  	return this.http.delete<void>(`${this.uri}/${id}`);
+  	return this.http.delete<any>(`${this.uri}/${id}`);
   }
 
 }

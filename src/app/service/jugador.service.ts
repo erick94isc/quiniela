@@ -19,8 +19,8 @@ export class JugadorService {
   return this.http.get(`${this.uri+'es'}/${id}`);
   }
 
-  getJugador(id):Observable<Jugador>{
-  	return this.http.get<Jugador>(`${this.uri}/${id}`)
+  getJugador(id):Observable<any>{
+  	return this.http.get<any>(`${this.uri}/${id}`)
   }
 
   create(jugador:Jugador): Observable<any>{
@@ -32,7 +32,7 @@ export class JugadorService {
   }
 
   update(jugador:Jugador):Observable<any>{
-  		return this.http.put<void>(`${this.uri}/${jugador.id}`,jugador,{headers:this.httpHeaders})
+  		return this.http.put<void>(`${this.uri}/${jugador._id}`,jugador,{headers:this.httpHeaders})
   }
 
 }

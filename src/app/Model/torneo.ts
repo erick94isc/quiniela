@@ -1,5 +1,5 @@
 export class Torneo {
-	id:number;
+	_id:number;
 	nombre:string;
 	categoria:string;
 	fechaInicial:Date;

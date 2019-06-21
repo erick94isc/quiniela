@@ -1,4 +1,4 @@
-<h2 style="margin-top: 20px;">Nuevo Equipo</h2>
+<h2 style="margin-top: 20px;">{{title}}</h2>
 <hr>
 <form [formGroup]="registerEquipo" (ngSubmit)="onSubmit()">
   <div class="form-row">
@@ -21,7 +21,7 @@
       </div>
      <div class="form-group col-md-6">
       <label for="color">Color: </label>
-       <input class="form-control" [(colorPicker)]="equipo.color" [style.background]="color" id="color" name="color"  [(ngModel)]="equipo.color" formControlName="color" [ngClass]="{ 'is-invalid': submitted && f.color.errors }" />
+       <input class="form-control" [(colorPicker)]="equipo.color"  [ngStyle]="{ 'background-color': color }" id="color" name="color"  [(ngModel)]="equipo.color" formControlName="color" [ngClass]="{ 'is-invalid': submitted && f.color.errors }" />
         <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
              <div *ngIf="f.color.errors.required">Color es requerido</div>
         </div>

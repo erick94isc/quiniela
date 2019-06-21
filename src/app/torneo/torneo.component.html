@@ -5,12 +5,10 @@
 				<h2 style="font-weight: bold;">Torneos</h2>
 			</div>
 			<div class="col-4 text-right">
-				<input type="text" class="form-control border border-dark" placeholder="Buscar..." (input)="onSearchChange($event.target.value)">
+				<input type="text" class="form-control" placeholder="Buscar..." (input)="onSearchChange($event.target.value)">
 			</div>
-			<div class="col-1 text-right">
-				<button type="button" class="btn btn-primary border border-primary" 
-				[routerLink]="['/nuevoTorneo']" data-toggle="tooltip" data-toggle="top" title="Nuevo Torneo"><i class="material-icons">person_add</i>					
-				</button>
+			<div class="col-2 text-right">
+						<button type="button" class="btn btn-primary border border-primary" routerLink="/nuevoTorneo/nuevo" data-toggle="tooltip" data-placement="top" title="Nuevo Torneo"><i class="material-icons">playlist_add</i></button>
 			</div>	
 		</div>		
 	</div>
@@ -32,11 +30,10 @@
 				<td>{{torneo.categoria  | titlecase}}</td>
 				<td>{{torneo.fecha_inicio | date: 'dd//MM/yyyy'}}</td>
 				<td>{{torneo.fecha_fin | date:'dd/MM/yyyy'}}</td>			
-				<th>				
-				<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Torneo" (click)="eliminar(torneo._id)"><i class="material-icons">delete</i>	</a> 
-
-				<a class="btn" data-toogle="tooltip" data-placement="top" title="Editar Torneo" [routerLink]="['/nuevoTorneo']"><i class="material-icons">create</i></a>
-				</th>
+				<td>
+					<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Torneo" [routerLink]="['/nuevoTorneo',torneo._id]"><i class="material-icons">create</i></a>
+					<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Torneo" (click)="eliminar(torneo._id)"><i class="material-icons">delete</i></a> 
+				</td>
 			</tr>
 		</tbody>
 	</table>
