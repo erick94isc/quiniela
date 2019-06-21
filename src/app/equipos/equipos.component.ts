@@ -4,6 +4,7 @@ import {Equipo} from '../Model/equipo';
 import {EquipoService} from '../service/equipo.service';
 import {Torneo} from '../Model/torneo';
 import {TorneoService} from '../service/torneo.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -19,6 +20,7 @@ export class EquiposComponent implements OnInit {
   torneos: Torneo[];
   selectedTorneo:string="";
   nombreBuscar:string;
+  private id_equipo;
   constructor(private service:EquipoService, private torneoService:TorneoService) { }
 
  async ngOnInit() {
@@ -33,8 +35,22 @@ export class EquiposComponent implements OnInit {
       }
   }
 
-  delete(){
-  	console.log("eliminar");
+  delete(id:string){   
+    Swal.fire({ title:'¿Estas seguro?', text: "Desea eliminar el torneo", 
+     type: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33', confirmButtonText: 'Si!', cancelButtonText : 'Cancelar!'}).then((result) => {
+        if(result.value){
+          this.id_equipo = id;
+          this.service.delete(this.id_equipo).subscribe(
+            resp=> {
+              if(resp.code == 200){
+                Swal.fire('Eliminado', 'El Equipo ha sido eliminado correctamente','success');
+              } else {
+                Swal.fire('Error','No fue posible eliminar el equipo','error');
+              }
+            });
+        }
+      });
   }
 
  async onSearchChange(searchValue : string ) {  

@@ -34,7 +34,7 @@ export class EquipoService {
   	return this.http.put<void>(`${this.uri}/${equipo.id}`,equipo,{headers:this.httpHeaders})
   }
 
-  delete(id):Observable<void>{
+  delete(id):Observable<any>{
   	return this.http.delete<void>(`${this.uri}/${id}`);
   }
 

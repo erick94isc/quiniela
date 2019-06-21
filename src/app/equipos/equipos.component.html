@@ -38,7 +38,7 @@
 	    <td>{{equipo.puntos}}</td>
 	    <th>
 	    	<a class="btn" [routerLink]="['/jugadores',equipo._id]" data-toggle="tooltip" data-placement="top" title="Ver Jugadores"><i class="material-icons">supervised_user_circle</i></a>
-	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="delete()"><i class="material-icons">delete</i></a>
+	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Equipo" (click)="delete(equipo._id)"><i class="material-icons">delete</i></a>	    	
 	    	<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Equipo" [routerLink]="['/nuevoEquipo']"><i class="material-icons">create</i></a>
 	    </th>
   	 </tr>
