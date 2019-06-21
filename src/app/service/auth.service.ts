@@ -1,7 +1,9 @@
 import {Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
-import {Usuario} from '../usuario/usuario';
+import {Usuario} from '../Model/usuario';
+import {tap} from 'rxjs/operators';
+import * as url from '../urlEndPoint';
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class AuthService {
 
   _token:string;
   _username:string;
-
+  uri:string = url.urlEndPoint;  
   constructor(private http:HttpClient) {
    }
 

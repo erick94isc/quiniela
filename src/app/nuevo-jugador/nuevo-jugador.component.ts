@@ -31,12 +31,13 @@ export class NuevoJugadorComponent implements OnInit {
        resp=>{
           this.posiciones = resp;
        });
-    
-     if(this.activated.snapshot.paramMap.get('id') == 'nuevo'){
+     if(this.activated.snapshot.paramMap.get('action') === 'new'){
         this.idEquipo = this.activated.snapshot.paramMap.get('id');
+        this.title = 'Nuevo Jugador';
         this.isNew = true;
      }else{
         this.idJugador = this.activated.snapshot.paramMap.get('id');
+        this.title = 'Editar Jugador';
         this.isNew = false;
         this.getJugador();
      }
@@ -47,10 +48,7 @@ export class NuevoJugadorComponent implements OnInit {
       telefono: ['' , Validators.required],
       fecha_nacimiento: ['' , Validators.required],
       posicion: ['', Validators.required],
-      numero: ['', Validators.required],
-      goles: ['', Validators.nullValidator],
-      tarjetas_amarillas: ['', Validators.nullValidator],
-      tarjetas_rojas: ['', Validators.nullValidator],
+      numero: ['', Validators.required]
     }); 
     this.jugador.fecha_nacimiento = this.datepipe.transform(new Date(), "dd/MM/yyyy");          
   }
@@ -61,6 +59,7 @@ export class NuevoJugadorComponent implements OnInit {
       if(resp.code == 200)
          {
          this.jugador = resp.jugador;
+         console.log(this.jugador);
        }
    }catch(e){
      Swal.fire('Error',e.error.message ,'error');    
@@ -69,17 +68,22 @@ export class NuevoJugadorComponent implements OnInit {
 
  async guardar(){
    try{
-        this.jugador.equipo = this.idEquipo;
-        let response = await this.jugadorService.create(this.jugador).toPromise();
+        var response;
+         if(this.isNew){
+        this.jugador.equipo = this.idEquipo;       
+        response = await this.jugadorService.create(this.jugador).toPromise();
+        }else{
+         response = await this.jugadorService.update(this.jugador).toPromise();
+        }
         if(response.code = 200){
-            Swal.fire('','Equipo guardado correctamente','success');
+            Swal.fire('','Jugador guardado correctamente','success');
             this.router.navigate(['/jugadores',this.idEquipo]);
           } 
           else {
-           Swal.fire('Error','No fue posible guardar el equipo','error');
+           Swal.fire('Error','No fue posible guardar el jugador','error');
           } 
       }catch(e){
-        Swal.fire('Error', e.error.message,'error')
+        Swal.fire('Error', 'No fue posible guardar el jugador','error')
       }
   }
 
@@ -87,7 +91,6 @@ export class NuevoJugadorComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;    
-    console.log(this.submitted);
     if(this.jugadorForm.invalid){      
       return;
     } else {

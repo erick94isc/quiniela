@@ -22,9 +22,9 @@ const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'equipos', component:EquiposComponent},
   {path:'jugadores/:id',component:JugadoresComponent},
-  {path:'nuevoEquipo/:id/:action',component:NuevoEquipoComponent},
+  {path:'nuevoEquipo/:id',component:NuevoEquipoComponent},
   {path:'login',component:LoginComponent},
-  {path:'nuevoJugador/:id',component:NuevoJugadorComponent},
+  {path:'nuevoJugador/:id/:action',component:NuevoJugadorComponent},
   {path:'nuevoTorneo/:id',component:NuevoTorneoComponent},
   {path:'torneo', component:TorneoComponent}
 ];

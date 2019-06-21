@@ -7,16 +7,17 @@ export class Jugador{
 	numero:number;
 	telefono:number;
 	goles:number;
-	tarjetas:{
-         amarillas:number,
-         rojas:number
-  };
-  equipo:string;
+	tarjetas_amarillas:number;
+    tarjetas_rojas:number;
+  	equipo:string;
+	
 	constructor(){
 		this.nombre='';
 		this.apellido = '';
 		this.fecha_nacimiento = '';
 		this.posicion ='';
 		this.goles =0;
+		this.tarjetas_amarillas = 0;
+		this.tarjetas_rojas =0;
 	}
 }

@@ -32,7 +32,7 @@ export class JugadorService {
   }
 
   update(jugador:Jugador):Observable<any>{
-  		return this.http.put<void>(`${this.uri}/${jugador._id}`,jugador,{headers:this.httpHeaders})
+  		return this.http.put<any>(`${this.uri}/${jugador._id}`,jugador,{headers:this.httpHeaders})
   }
 
 }
