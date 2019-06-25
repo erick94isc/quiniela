@@ -11,10 +11,18 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  showNav:boolean;
   constructor(private auth:AuthService,private router:Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+   this.showNav = await this.auth.isAuthenticated();
+        
   }
+
+  ngOnChanges()
+ {
+  
+ }
 
   logout():void{
   	this.auth.logout();
