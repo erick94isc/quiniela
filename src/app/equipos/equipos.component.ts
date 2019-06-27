@@ -24,15 +24,20 @@ export class EquiposComponent implements OnInit {
   constructor(private service:EquipoService, private torneoService:TorneoService) { }
 
  async ngOnInit() {
- 	let resp =  await this.service.getEquipos("","").toPromise();
- 		if(resp.code == 200){
- 			this.equipos = resp.equipos;
- 		}
+ 
+   this.getEquipo();
   let respTorneos = await this.torneoService.getTorneos("").toPromise();
   console.log(respTorneos);
       if(respTorneos.code == 200){
           this.torneos = respTorneos.torneos;
       }
+  }
+
+ async getEquipo(){
+      let resp =  await this.service.getEquipos("","").toPromise();
+     if(resp.code == 200){
+       this.equipos = resp.equipos;
+     }
   }
 
   delete(id:string){   
@@ -45,6 +50,7 @@ export class EquiposComponent implements OnInit {
             resp=> {
               if(resp.code == 200){
                 Swal.fire('Eliminado', 'El Equipo ha sido eliminado correctamente','success');
+                this.getEquipo();
               } else {
                 Swal.fire('Error','No fue posible eliminar el equipo','error');
               }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { EquiposComponent } from './equipos/equipos.component';
@@ -17,16 +18,18 @@ import { TorneoComponent } from './torneo/torneo.component';
 import { DatePipe } from '@angular/common'
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NuevoTorneoComponent } from './nuevo-torneo/nuevo-torneo.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
-  {path:'equipos', component:EquiposComponent},
-  {path:'jugadores/:id',component:JugadoresComponent},
-  {path:'nuevoEquipo/:id',component:NuevoEquipoComponent},
+  {path:'equipos', component:EquiposComponent,canActivate: [AuthGuard] },
+  {path:'jugadores/:id',component:JugadoresComponent,canActivate: [AuthGuard]},
+  {path:'nuevoEquipo/:id',component:NuevoEquipoComponent,canActivate: [AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'nuevoJugador/:id/:action',component:NuevoJugadorComponent},
-  {path:'nuevoTorneo/:id',component:NuevoTorneoComponent},
-  {path:'torneo', component:TorneoComponent}
+  {path:'nuevoJugador/:id/:action',component:NuevoJugadorComponent,canActivate: [AuthGuard]},
+  {path:'nuevoTorneo/:id',component:NuevoTorneoComponent,canActivate: [AuthGuard]},
+  {path:'torneo', component:TorneoComponent,canActivate: [AuthGuard]},
+  {path:'usuario/:id',component:RegistroComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -41,7 +44,8 @@ const routes: Routes = [
     EquipoComponent,
     JugadorComponent,
     TorneoComponent,
-    NuevoTorneoComponent
+    NuevoTorneoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,51 @@
+<h2 style="margin-top: 20px;"> {{title}}</h2>
+<hr>
+<form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+   <div class="form-row">
+      <div class="form-group col-md-6">
+			<label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]="usuario.nombre" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" >
+         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+               <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+          </div>
+		</div>
+		<div class="from-group col-md-6">
+			<label for="apellido">Apellido:</label>
+			<input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="usuario.apellido" placeholder="Apellido" formControlName="apellido" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" >
+			  <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+               <div *ngIf="f.apellido.errors.required">Apellido es requerido</div>
+          </div>
+		</div>
+		<div class="from-group col-md-6">
+			<label for="username">Usuario:</label>
+			<input type="text" class="form-control" id="username" name="username" [(ngModel)]="usuario.username" placeholder="Usuario" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
+			  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+               <div *ngIf="f.username.errors.required">Usuario es requerido</div>
+          </div>
+		</div>
+		<div class="from-group col-md-6">
+			<label for="email">Correo:</label>
+			<input type="text" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" placeholder="Correo" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+			 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+               <div *ngIf="f.email.errors.required">Correo es requerido</div>
+          </div>
+		</div>
+		<div class="from-group col-md-6">
+			<label for="pass">Contraseña:</label>
+			<input type="password" class="form-control" id="pass" name="password" [(ngModel)]="usuario.password" placeholder="Contraseña" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+			  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+               <div *ngIf="f.password.errors.required">Contraseña es requerido</div>
+          </div>
+		</div>
+		<div class="from-group col-md-6">
+			<label for="confirmPass">Confirmar Contraseña:</label>
+			<input type="password" class="form-control" id="confirmPass" name="password2" [(ngModel)]="password2" placeholder="Confirmar" formControlName="password2" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }">
+			  <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+               <div *ngIf="f.password2.errors.required">Contraseña es requerido</div>
+               <div *ngIf="f.password2.errors.notSame">Contraseña no coincide</div>
+          </div>
+		</div>
+
+	</div>
+	<button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" >Guardar</button>
+</form>

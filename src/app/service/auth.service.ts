@@ -12,7 +12,7 @@ import * as url from '../urlEndPoint';
 export class AuthService {
 
   _token:string;
-  _username:string;
+  _userID:string;
   uri:string = url.urlEndPoint;  
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'});
   constructor(private http:HttpClient) {
@@ -28,34 +28,46 @@ export class AuthService {
      return null;
    }
 
-   public get user():string{
-     if(this._username != null){
-       return this._username;
-     }else if(this._username == null && sessionStorage.getItem('username') != null){
-       this._username = sessionStorage.getItem('username');
-       return this._username;
+   public get userID():string{
+     if(this._userID != null){
+       return this._userID;
+     }else if(this._userID == null && sessionStorage.getItem('userID') != null){
+       this._userID = sessionStorage.getItem('userID');
+       return this._userID;
      }
      return null;
    }
 
    register(usuario:Usuario):Observable<any>{
-     return this.http.post<any>(this.uri+'/register',usuario,{headers:this.httpHeaders});
+     return this.http.post<any>(this.uri+'/usuario',usuario,{headers:this.httpHeaders});
    }
 
    login(usuario: Usuario):Observable<any>{
    	return this.http.post<any>(this.uri +'/login',usuario,{headers:this.httpHeaders});
    }
 
-   guardarUsuarioToken(accessToken:string,usuario:string,expires:string):void{
+   getUsuario(id):Observable<any>{
+     return this.http.get<any>(`${this.uri}/usuario/${id}`);
+   }
+
+   updateUsuario(usuario:Usuario):Observable<any>{
+     return this.http.put<any>(`${this.uri}/usuario/${usuario._id}`,usuario,{headers:this.httpHeaders});
+   }
+
+   delete(id):Observable<any>{
+     return this.http.delete<any>(`${this.uri}/usuario/${id}`);
+   }
+
+   guardarUsuarioToken(accessToken:string,id:string,expires:string):void{
      this._token = accessToken;
-     this._username = usuario;
-     sessionStorage.setItem('username',usuario);
+     this._userID = id;
+     sessionStorage.setItem('userID',id);
      sessionStorage.setItem('token',accessToken);
      sessionStorage.setItem('expires',expires)
    }
 
    isAuthenticated():boolean{
-     if(this.token != null && this.user){
+     if(this.token != null && this.userID){
        return true;
      }
      return false;
@@ -63,7 +75,7 @@ export class AuthService {
 
    logout(){
      this._token = null;
-     this._username = null;
+     this._userID = null;
      sessionStorage.clear();
    }
 }

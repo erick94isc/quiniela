@@ -19,7 +19,6 @@ export class JugadoresComponent implements OnInit {
   async ngOnInit() {
   	this.idEquipo = this.route.snapshot.paramMap.get('id');
   	let response = await this.service.getJugadores(this.idEquipo).toPromise();
-  	console.log(response);
   		if(response.code == 200){
  			this.jugadores = response.jugadores;
  		}
