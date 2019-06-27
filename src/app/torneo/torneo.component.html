@@ -1,7 +1,7 @@
 <div class="card" style="margin-top: 20px;">
 	<div class="card-header header-blue">
 		<div class="row">
-			<div class="col-7">
+			<div class="col-6">
 				<h2 style="font-weight: bold;">Torneos</h2>
 			</div>
 			<div class="col-4 text-right">
@@ -28,7 +28,7 @@
 			<tr *ngFor="let torneo of torneos">
 				<td>{{torneo.nombre | titlecase}}</td>
 				<td>{{torneo.categoria  | titlecase}}</td>
-				<td>{{torneo.fecha_inicio | date: 'dd//MM/yyyy'}}</td>
+				<td>{{torneo.fecha_inicio | date: 'dd/MM/yyyy'}}</td>
 				<td>{{torneo.fecha_fin | date:'dd/MM/yyyy'}}</td>			
 				<td>
 					<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Torneo" [routerLink]="['/nuevoTorneo',torneo._id]"><i class="material-icons">create</i></a>

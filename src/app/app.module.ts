@@ -17,6 +17,8 @@ import { TorneoComponent } from './torneo/torneo.component';
 import { DatePipe } from '@angular/common'
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NuevoTorneoComponent } from './nuevo-torneo/nuevo-torneo.component';
+import { PartidosComponent } from './partidos/partidos.component';
+import { NuevopartidoComponent } from './nuevopartido/nuevopartido.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -26,7 +28,9 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'nuevoJugador/:id/:action',component:NuevoJugadorComponent},
   {path:'nuevoTorneo/:id',component:NuevoTorneoComponent},
-  {path:'torneo', component:TorneoComponent}
+  {path:'torneo', component:TorneoComponent}, 
+  {path:'nuevoPartido', component:NuevopartidoComponent}, 
+  {path:'partido', component:PartidosComponent}
 ];
 
 @NgModule({
@@ -41,7 +45,9 @@ const routes: Routes = [
     EquipoComponent,
     JugadorComponent,
     TorneoComponent,
-    NuevoTorneoComponent
+    NuevoTorneoComponent,
+    PartidosComponent,
+    NuevopartidoComponent
   ],
   imports: [
     BrowserModule,

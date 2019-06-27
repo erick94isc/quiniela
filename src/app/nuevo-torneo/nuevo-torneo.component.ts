@@ -18,11 +18,11 @@ export class NuevoTorneoComponent implements OnInit {
   torneo : Torneo = new Torneo(); 
   private id;
   title:string = '';
-  isNew:boolean;
+  isNew:boolean;  
   constructor(private torneoService:TorneoService, private router:Router , private formBuilder: FormBuilder,   private datePipe: DatePipe,
               private activatedRoute:ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit() {  
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if(this.id !== 'nuevo'){
         this.title ='Editar Torneo';
@@ -69,14 +69,14 @@ export class NuevoTorneoComponent implements OnInit {
   } 
 
   async guardarTorneo(){
+
     try{
-       var response;
-          if(this.isNew){
-             response= await this.torneoService.create(this.torneo).toPromise();    
-            } else{
-              response = await this.torneoService.update(this.torneo).toPromise(); 
-            } 
-          console.log(response);
+       var response;       
+       if(this.isNew){
+         response= await this.torneoService.create(this.torneo).toPromise();    
+        } else{
+          response = await this.torneoService.update(this.torneo).toPromise(); 
+        }        
         if(response.code = 200){
           Swal.fire('','Torneo guardado correctamente', 'success');
           this.router.navigate(['/torneo']);

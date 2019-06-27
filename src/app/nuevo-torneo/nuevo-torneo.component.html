@@ -18,18 +18,19 @@
 		</div>
 		<div class="form-group col-md-6">
 			<label for="fechaInicial">Fecha Inicia: </label>
-			<input type="date" id="fechaInicial" name="fechaInicial" class="date-picker"  min="2019-01-01" formControlName="fechaInicial" [ngClass]="{ 'is-invalid': submitted && f.fechaInicial.errors }"  [(ngModel)]=torneo.fechaInicial >
+			<input type="date" id="fechaInicial" name="fechaInicial" class="form-control" formControlName="fechaInicial" [ngClass]="{'is-invalid': submitted && f.fechaInicial.errors }" [(ngModel)]="torneo.fechaInicial"  min="2019-01-01">
 			<div *ngIf="submitted && f.fechaInicial.errors" class="invalid-feedback">
            		 <div *ngIf="f.fechaInicial.errors.required">Fecha Inicia es requerido</div>
         	</div>
 		</div>
 		<div class="form-group col-md-6">
 			<label for="fechaFinal">Fecha Termina: </label>
-			<input type="date" id="fechaFinal" name="fechaFinal" class="date-picker" min="2019-01-01" formControlName="fechaFinal" [ngClass]="{ 'is-invalid': submitted && f.fechaFinal.errors }" [(ngModel)]=torneo.fecha_termina >	
+			<input type="date" id="fechaFinal" name="fechaFinal" class="date-picker" min="2019-01-01" formControlName="fechaFinal" [ngClass]="{ 'is-invalid': submitted && f.fechaFinal.errors }" [(ngModel)]="torneo.fechaFinal"  min="2019-01-01" >	
 			<div *ngIf="submitted && f.fechaFinal.errors" class="invalid-feedback">
            		 <div *ngIf="f.fechaFinal.errors.required">Fecha Termina es requerido</div>
         	</div>
 		</div>		
+		<pre>{{torneo.fechaInicial |date:"shortDate" }}</pre>		
 	</div>
 	<button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;" >Registrar </button>
 	
