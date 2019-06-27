@@ -5,7 +5,7 @@
 		<div class="form-group col-md-6">
 			<label for="equipo1">Equipo 1:</label>
 			<select class="custom-select" id="equipo1" name="equipo1" [(ngModel)]=partido.equipo1 formControlName="equipo1" >			
-			 <option value="-1">Seleccione...</option>	
+			 <option value="">Seleccione...</option>	
 			 <option *ngFor="let p of equipo1" [value]="p.nombre">{{p.nombre}}</option>
 			</select>
 			<div *ngIf="submitted && f.equipo1.errors" class="invalid-feedback">
@@ -15,7 +15,7 @@
 		<div class="form-group col-md-6">
 			<label for="equipo2">Equipo 2:</label>
 			<select class="custom-select" id="equipo2" name="equipo2" [(ngModel)]=partido.equipo2 formControlName="equipo2" >			
-			 <option value="-1">Seleccione...</option>	
+			 <option value="">Seleccione...</option>	
 			 <option *ngFor="let p of equipo2" [value]="p.nombre">{{p.nombre}}</option>
 			</select>
 			<div *ngIf="submitted && f.equipo2.errors" class="invalid-feedback">
@@ -24,7 +24,7 @@
 		</div>	
 		<div class="form-group col-md-6">
 			<label for="fecha">Fecha:</label>
-			<input type="date" id="fecha" name="fecha" class="form-control" formControlName="fecha" [ngClass]="{'is-invalid': submitted && f.fecha.errors }" [(ngModel)]="partido.fecha" min="2019-01-01">
+			<input type="date" id="fecha" name="fecha" class="form-control" formControlName="fecha" [ngClass]="{'is-invalid': submitted && f.fecha.errors }" [(ngModel)]="partido.fecha" [(min)]="minDate">
 			<div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
            		 <div *ngIf="f.fecha.errors.required">Fecha es requerido</div>
         	</div>

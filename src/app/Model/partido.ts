@@ -4,4 +4,5 @@ export class Partido {
 	equipo2:string;
 	fecha:Date;
 	hora:string;
+	torneo:number;
 }

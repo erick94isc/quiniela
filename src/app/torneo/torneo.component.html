@@ -31,8 +31,9 @@
 				<td>{{torneo.fecha_inicio | date: 'dd/MM/yyyy'}}</td>
 				<td>{{torneo.fecha_fin | date:'dd/MM/yyyy'}}</td>			
 				<td>
+					<a class="btn" data-toggle="tooltip" data-placement="top" title="Ver Partidos" [routerLink]="['/partidos',torneo._id]"><i class="material-icons">directions_run</i></a>
 					<a class="btn" data-toggle="tooltip" data-placement="top" title="Editar Torneo" [routerLink]="['/nuevoTorneo',torneo._id]"><i class="material-icons">create</i></a>
-					<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Torneo" (click)="eliminar(torneo._id)"><i class="material-icons">delete</i></a> 
+					<a class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar Torneo" (click)="eliminar(torneo._id)"><i class="material-icons">delete</i></a> 					
 				</td>
 			</tr>
 		</tbody>

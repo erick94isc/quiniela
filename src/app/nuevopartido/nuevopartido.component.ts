@@ -5,6 +5,7 @@ import {PartidoService} from '../service/partido.service';
 import {EquipoService} from '../service/equipo.service';
 import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -18,25 +19,37 @@ export class NuevopartidoComponent implements OnInit {
   equipo1: Equipo[];
   equipo2: Equipo[];
   submitted = false;
-  constructor(private equipoService:EquipoService, private formBuilder: FormBuilder,  private partidoService:PartidoService ) { 
+  minDate:Date = new Date();
 
+  constructor(private equipoService:EquipoService, private formBuilder: FormBuilder,  private partidoService:PartidoService,
+              private datePipe: DatePipe ) { 
+       
   }
 
   ngOnInit() {
-  	this.equipoService.getEquipos("","").subscribe(
-  		resp=> {  			
-  			if(resp.code == 200){
-  				this.equipo1 = resp.equipos;
-  				this.equipo2 = resp.equipos;
-  			} 
-  		});
+  	this.minDate = this.datePipe.transform(this.minDate, 'yyyy-MM-dd');
+    console.log(this.minDate);
+    this.getEquipo1();
   	this.registerPartido = this.formBuilder.group({
-  		equipo1: ['-1', Validators.required],
-  		equipo2: ['-1', Validators.required],
+  		equipo1: ['', Validators.required],
+  		equipo2: ['', Validators.required],
       fecha: ['', Validators.required],
       hora: ['', Validators.required]
   	});
 
+  }
+
+  async getEquipo1(){
+    try{
+       const response = await this.equipoService.getEquipos("","").toPromise();
+         if(response.code == 200){
+           this.equipo1 = response.equipos;
+           console.log(this.equipo1);
+         }
+    }catch(e){
+      Swal.fire('Error','','error');
+      console.log(e);
+    }
   }
 
   get f() {return this.registerPartido.controls; }

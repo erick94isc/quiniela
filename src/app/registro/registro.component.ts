@@ -30,14 +30,14 @@ export class RegistroComponent implements OnInit {
          password:['',Validators.required],
          email:['',Validators.required],
          username:['',Validators.required],
-         password2:['']     
-     },{validator: this.checkPassword});
+         password2:['',Validators.required]     
+     },{validator: this.MustMatch('password','password2')});
 
      if(this.id !== 'nuevo'){
        this.title = 'Editar Usuario';
         this.isNew = false;
         this.getUsuario();
-     }else{
+     }else if(this.id == 'nuevo'){
        this.title = 'Nuevo Usuario';
        this.isNew = true;
      }
@@ -59,11 +59,21 @@ export class RegistroComponent implements OnInit {
 
   get f(){return this.usuarioForm.controls; }
 
-  checkPassword(group:FormGroup){
-     let pass = group.controls.password.value;
-     let confirmPass = group.controls.password2.value;
+  MustMatch(controlName:string,matchingControlName:string){
+     return (formGroup: FormGroup) => {
+       const control = formGroup.controls[controlName];
+       const matchingControl = formGroup.controls[matchingControlName];
 
-     return pass === confirmPass ? null : { notSame: true }  
+       if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            return;
+        }
+
+       if (control.value !== matchingControl.value) {
+              matchingControl.setErrors({ mustMatch: true });
+          } else {
+              matchingControl.setErrors(null);
+          }
+   }
   }
 
   onSubmit(){

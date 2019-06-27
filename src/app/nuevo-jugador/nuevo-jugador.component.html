@@ -28,8 +28,8 @@
     </div>
     <div class="form-group col-md-6">
       <label for="fechaNacimiento">Fecha Nacimiento:</label>
-      <input type="date" id="fechaNacimiento" class="form-group" class="date-picker" name="fecha_nacimiento" min="1950-12-01" [(ngModel)]="jugador.fecha_nacimiento" formControlName="fecha_nacimiento" placeholder="
-      Telefono" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" >
+      <input type="date" id="fechaNacimiento" class="date-picker form-group" name="fecha_nacimiento" min="1950-12-01" [(ngModel)]="jugador.fecha_nacimiento" formControlName="fecha_nacimiento" placeholder="
+      Fecha Nacimiento" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" >
       <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
                <div *ngIf="f.fecha_nacimiento.errors.required">Fecha Nacimiento es requerido</div>
           </div>
@@ -38,9 +38,8 @@
   <div class="form-row">
 	 <div class="form-group col-md-6">
       <label for="posicion">Posición:</label>
-	    <select class="custom-select" id="posicion" name="posicion" [(ngModel)]="jugador.posicion" formControlName="posicion" placeholder="
-      posicion" [ngClass]="{ 'is-invalid': submitted && f.posicion.errors }">
-        <option value=""></option>
+	    <select class="custom-select" id="posicion" name="posicion" [(ngModel)]="jugador.posicion" formControlName="posicion" [ngClass]="{ 'is-invalid': submitted && f.posicion.errors }">
+        <option value="Seleccione.."></option>
 	      <option *ngFor="let p of posiciones" [value]="p.nombre">{{p.nombre}}</option>
 	    </select>
       <div *ngIf="submitted && f.posicion.errors" class="invalid-feedback">
@@ -49,7 +48,7 @@
 	  </div>
 	   <div class="form-group col-md-6">
 	   	<label for="numero">Número:</label>
-       <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="jugador.numero" placeholder="numero" formControlName="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }"  >
+       <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="jugador.numero" formControlName="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }"  >
         <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
                <div *ngIf="f.numero.errors.required">Numero es requerido</div>
           </div>

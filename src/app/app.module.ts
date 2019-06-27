@@ -21,6 +21,7 @@ import { NuevoTorneoComponent } from './nuevo-torneo/nuevo-torneo.component';
 import { RegistroComponent } from './registro/registro.component';
 import { PartidosComponent } from './partidos/partidos.component';
 import { NuevopartidoComponent } from './nuevopartido/nuevopartido.component';
+import { PartidoComponent } from './partidos/partido/partido.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -32,8 +33,8 @@ const routes: Routes = [
   {path:'nuevoTorneo/:id',component:NuevoTorneoComponent,canActivate: [AuthGuard]},
   {path:'torneo', component:TorneoComponent,canActivate: [AuthGuard]},
   {path:'usuario/:id',component:RegistroComponent,canActivate: [AuthGuard]},
-  {path:'nuevoPartido', component:NuevopartidoComponent,canActivate: [AuthGuard]}, 
-  {path:'partido', component:PartidosComponent,canActivate: [AuthGuard]}
+  {path:'nuevoPartido/:id', component:NuevopartidoComponent,canActivate: [AuthGuard]}, 
+  {path:'partidos/:id', component:PartidosComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -51,7 +52,8 @@ const routes: Routes = [
     NuevoTorneoComponent,
     RegistroComponent,
     PartidosComponent,
-    NuevopartidoComponent
+    NuevopartidoComponent,
+    PartidoComponent
   ],
   imports: [
     BrowserModule,

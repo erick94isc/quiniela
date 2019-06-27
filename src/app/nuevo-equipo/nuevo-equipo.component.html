@@ -12,7 +12,7 @@
       <div class="form-group col-md-6">
          <label for="torneo">Torneo:</label>
         <select class="custom-select" id="torneo" name="torneo"  [(ngModel)]="equipo.torneo" formControlName="torneo" [ngClass]="{ 'is-invalid': submitted && f.torneo.errors }"  [(ngModel)]=equipo.torneo >
-          <option value="-1">Seleccione...</option>
+          <option value="">Seleccione...</option>
           <option *ngFor="let p of torneo" [value]="p.nombre">{{p.nombre}} </option>
         </select>
        <div *ngIf="submitted && f.torneo.errors" class="invalid-feedback">

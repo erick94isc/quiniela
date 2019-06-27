@@ -11,14 +11,12 @@ import {map} from 'rxjs/operators';
  export class PartidoService {
 
  	private uri:string = url.urlEndPoint + '/partido'
+ 	private uriPartidos = url.urlEndPoint + '/partidos'
  	private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
  	constructor(private http:HttpClient) { }
 
-	getPartidos(name:string):Observable<any>{
-		let params = new HttpParams();
-
-		params =  params.append('nombre',name);
-		return this.http.get(this.uri,{headers:this.httpHeaders,params:params});
+	getPartidos(id):Observable<any>{
+		return this.http.get(`${this.uriPartidos}/${id}`);
 	} 	
 
 	getPartido(id:number):Observable<any>{
