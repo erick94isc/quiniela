@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../service/auth.service';
+import { AuthService } from '../service/auth.service';
 import Swal from 'sweetalert2'
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,14 +11,15 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private auth:AuthService,private router:Router) { }
+  showNav: boolean;
+  constructor(private auth: AuthService, private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
   }
 
-  logout():void{
-  	this.auth.logout();
-  	Swal.fire('Logout','','success');
-  	this.router.navigate(['/login']);
+  logout(): void {
+    this.auth.logout();
+    Swal.fire('Logout', '', 'success');
+    this.router.navigate(['/login']);
   }
 }

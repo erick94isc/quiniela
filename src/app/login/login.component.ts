@@ -25,21 +25,19 @@ export class LoginComponent implements OnInit {
   	}
   }
 
-  login():void{
-  	if(this.usuario.username == null || this.usuario.password == null){
-  		Swal.fire('Error Login','Usuario o contraseña vacíos','error');
-  		return ;
-  	}
-
-  	this.auth.login(this.usuario).subscribe(resp=>{
-  		
-  		this.auth.guardarUsuarioToken(resp.access_token);
-  		this.router.navigate(['/equipos']);
-  		Swal.fire('Login','Hola','success');
-  	}, error=>{
-  		if(error == 400){
-  			Swal.fire('Error Login','Usuario o contraseña incorrectas','error');
-  		}
-  	});
+ async login(){
+   try{
+     console.log(this.usuario);
+    let response = await this.auth.login(this.usuario).toPromise();
+      if(response.code == 200){
+        let usuario = response.dataUser;
+        this.auth.guardarUsuarioToken(usuario.accessToken,usuario.username,usuario.expires);
+        this.router.navigate(['/equipos']);
+      }else if(response.code == 403){
+           Swal.fire('Error','Corre y/o contraseña no son correctos' ,'error');
+      }
+   }catch(e){
+           Swal.fire('Error',e.error.message ,'error');      
+   }
   }
 }

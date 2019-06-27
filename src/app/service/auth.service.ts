@@ -14,6 +14,7 @@ export class AuthService {
   _token:string;
   _username:string;
   uri:string = url.urlEndPoint;  
+  private httpHeaders = new HttpHeaders({'Content-type':'application/json'});
   constructor(private http:HttpClient) {
    }
 
@@ -27,42 +28,34 @@ export class AuthService {
      return null;
    }
 
-   login(usuario: Usuario):Observable<any>{
-
-   	const urlEndPoint = '';
-
-   	const credenciales = btoa(''+':'+ '');
-
-   	const httpHeaders = new HttpHeaders({
-   		'Content-Type':'application/x-www-form-urlencoded',
-   		'Authorization':'Basic' + credenciales
-   	});
-   	let params = new URLSearchParams();
-   	params.set('grant_type','password');
-   	params.set('username',usuario.username);
-   	params.set('password',usuario.password);
-
-   	return this.http.post<any>(urlEndPoint,params.toString(),{headers:httpHeaders});
-   }
-
-   obtenerDatosToken(accessToken:string):any{
-     if(accessToken !=null){
-       return JSON.parse(accessToken.split(".")[1])
+   public get user():string{
+     if(this._username != null){
+       return this._username;
+     }else if(this._username == null && sessionStorage.getItem('username') != null){
+       this._username = sessionStorage.getItem('username');
+       return this._username;
      }
      return null;
    }
 
-   guardarUsuarioToken(accessToken:string):void{
-     let payload = this.obtenerDatosToken(accessToken);
+   register(usuario:Usuario):Observable<any>{
+     return this.http.post<any>(this.uri+'/register',usuario,{headers:this.httpHeaders});
+   }
+
+   login(usuario: Usuario):Observable<any>{
+   	return this.http.post<any>(this.uri +'/login',usuario,{headers:this.httpHeaders});
+   }
+
+   guardarUsuarioToken(accessToken:string,usuario:string,expires:string):void{
      this._token = accessToken;
-     this._username = payload.user_name;
-     sessionStorage.setItem('username',payload.user_name);
+     this._username = usuario;
+     sessionStorage.setItem('username',usuario);
      sessionStorage.setItem('token',accessToken);
+     sessionStorage.setItem('expires',expires)
    }
 
    isAuthenticated():boolean{
-     let payload = this.obtenerDatosToken(this.token);
-     if(payload != null && payload.user_name && payload.user_name.length > 0){
+     if(this.token != null && this.user){
        return true;
      }
      return false;

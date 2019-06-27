@@ -48,7 +48,10 @@ export class NuevoJugadorComponent implements OnInit {
       telefono: ['' , Validators.required],
       fecha_nacimiento: ['' , Validators.required],
       posicion: ['', Validators.required],
-      numero: ['', Validators.required]
+      numero: ['', Validators.required],
+      goles: ['', Validators.nullValidator],
+      tarjetas_amarillas: ['', Validators.nullValidator],
+      tarjetas_rojas: ['', Validators.nullValidator],
     }); 
     this.jugador.fecha_nacimiento = this.datepipe.transform(new Date(), "dd/MM/yyyy");          
   }
@@ -59,7 +62,7 @@ export class NuevoJugadorComponent implements OnInit {
       if(resp.code == 200)
          {
          this.jugador = resp.jugador;
-         console.log(this.jugador);
+         this.idEquipo = resp.jugador.equipo;
        }
    }catch(e){
      Swal.fire('Error',e.error.message ,'error');    
@@ -83,6 +86,7 @@ export class NuevoJugadorComponent implements OnInit {
            Swal.fire('Error','No fue posible guardar el jugador','error');
           } 
       }catch(e){
+        console.log(e);
         Swal.fire('Error', 'No fue posible guardar el jugador','error')
       }
   }

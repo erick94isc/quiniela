@@ -60,21 +60,21 @@
       <label >Goles:</label>
       <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles - 1">-</button>
-      <input type="number" name="goles" disabled="false" class=" input-disable" [(ngModel)]="jugador.goles">           
+      <input type="number" name="goles" disabled="false" class=" input-disable" [(ngModel)]="jugador.goles" formControlName="goles">           
       <button type="button" class="btn btn-info button-circle" (click)="jugador.goles = jugador.goles + 1">+</button>
     </div>
     <div class="form-group col-md-4">
       <label >Tarjetas Amarillas:</label>
        <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas - 1">-</button>
-      <input type="number" name="tarjetas_amarillas" disabled="false" class=" input-disable" [(ngModel)]="jugador.tarjetas_amarillas"> 
+      <input type="number" name="tarjetas_amarillas" disabled="false" class=" input-disable" [(ngModel)]="jugador.tarjetas_amarillas" formControlName="tarjetas_amarillas"> 
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_amarillas = jugador.tarjetas_amarillas + 1">+</button>  
     </div>
      <div class="form-group col-md-4">
       <label>Tarjetas Rojas:</label>
        <br>
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas - 1">-</button>
-      <input type="number" name="tarjetas_rojas" disabled="false" class="input-disable" [(ngModel)]="jugador.tarjetas_rojas" >       
+      <input type="number" name="tarjetas_rojas" disabled="false" class="input-disable" [(ngModel)]="jugador.tarjetas_rojas" formControlName="tarjetas_rojas">       
 
       <button type="button" class="btn btn-info button-circle" (click)="jugador.tarjetas_rojas = jugador.tarjetas_rojas + 1">+</button>
     </div>
