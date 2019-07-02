@@ -35,7 +35,7 @@ export class NuevoJugadorComponent implements OnInit {
         this.idEquipo = this.activated.snapshot.paramMap.get('id');
         this.title = 'Nuevo Jugador';
         this.isNew = true;
-     }else{
+     }else if(this.activated.snapshot.paramMap.get('action') === 'edit'){
         this.idJugador = this.activated.snapshot.paramMap.get('id');
         this.title = 'Editar Jugador';
         this.isNew = false;

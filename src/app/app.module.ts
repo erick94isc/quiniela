@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:'nuevoTorneo/:id',component:NuevoTorneoComponent,canActivate: [AuthGuard]},
   {path:'torneo', component:TorneoComponent,canActivate: [AuthGuard]},
   {path:'usuario/:id',component:RegistroComponent,canActivate: [AuthGuard]},
-  {path:'nuevoPartido/:id', component:NuevopartidoComponent,canActivate: [AuthGuard]}, 
+  {path:'nuevoPartido/:id/:action', component:NuevopartidoComponent,canActivate: [AuthGuard]}, 
   {path:'partidos/:id', component:PartidosComponent,canActivate: [AuthGuard]}
 ];
 

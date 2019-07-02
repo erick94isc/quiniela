@@ -5,4 +5,9 @@ export class Partido {
 	fecha:Date;
 	hora:string;
 	torneo:number;
+
+	constructor(){
+		this.equipo1 ="";
+		this.equipo2="";
+	}
 }

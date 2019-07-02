@@ -4,7 +4,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="equipo1">Equipo 1:</label>
-			<select class="custom-select" id="equipo1" name="equipo1" [(ngModel)]=partido.equipo1 formControlName="equipo1" >			
+			<select class="custom-select" id="equipo1" name="equipo1" [(ngModel)]=partido.equipo1 formControlName="equipo1" (change)="equipo1Changed($event.target.value)" >			
 			 <option value="">Seleccione...</option>	
 			 <option *ngFor="let p of equipo1" [value]="p.nombre">{{p.nombre}}</option>
 			</select>

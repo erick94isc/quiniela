@@ -21,5 +21,6 @@ export class Equipo {
 		this.goles_favor = 0;
 		this.goles_contra = 0;
 		this.diferencia_goles = 0;
+		this.torneo ="";
 	}
 }

@@ -12,6 +12,7 @@ export class Jugador{
   	equipo:string;
 	
 	constructor(){
+		this.posicion="";
 		this.nombre='';
 		this.apellido = '';
 		this.fecha_nacimiento = '';

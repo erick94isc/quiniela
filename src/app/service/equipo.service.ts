@@ -10,7 +10,8 @@ import {map} from 'rxjs/operators';
 })
 export class EquipoService {
 
-  private uri:string = url.urlEndPoint + '/equipo'	
+  private uri:string = url.urlEndPoint + '/equipo';
+  private uriFiltro:string = url.urlEndPoint + '/equipoFilter';	
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
   constructor(private http:HttpClient) { }
 
@@ -36,6 +37,12 @@ export class EquipoService {
 
   delete(id):Observable<any>{
   	return this.http.delete<any>(`${this.uri}/${id}`);
+  }
+
+  getEquiposFiltro(equipo:string):Observable<any>{
+     let params = new HttpParams();
+      params = params.append('equipo',equipo);
+     return this.http.get(this.uriFiltro,{headers:this.httpHeaders,params:params});
   }
 
 }
