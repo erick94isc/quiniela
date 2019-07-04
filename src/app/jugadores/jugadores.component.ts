@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Jugador} from '../Model/jugador';
 import {ActivatedRoute} from '@angular/router';
 import {JugadorService} from '../service/jugador.service';
+import {EquipoService} from '../service/equipo.service';
+
 
 
 @Component({
